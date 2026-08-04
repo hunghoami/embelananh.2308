@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday! 🎬 - Tuyệt Tác Sinh Nhật Điện Ảnh</title>
+    <meta name="description" content="Trang web chúc mừng sinh nhật điện ảnh độc đáo đếm ngược theo thời gian thực chuẩn Internet.">
+    
+    <!-- Anti-Cache Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries (GSAP 3 & Canvas Confetti) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    
+    <!-- Custom Styles (with Hard Cache-Buster v=500.0) -->
+    <link rel="stylesheet" href="css/style.css?v=500.0">
+</head>
+<body>
+
+    <!-- 1. MOBILE PORTRAIT LOCK OVERLAY -->
+    <div id="portrait-warning" class="portrait-warning-overlay">
+        <div class="rotate-device-content">
+            <div class="phone-animation">
+                <svg viewBox="0 0 100 100" class="rotate-svg">
+                    <rect x="25" y="15" width="50" height="70" rx="10" ry="10" fill="none" stroke="#ffd700" stroke-width="4"/>
+                    <circle cx="50" cy="76" r="3.5" fill="#ffd700"/>
+                    <path d="M 50 5 A 40 40 0 0 1 90 45" fill="none" stroke="#ff758c" stroke-width="4" stroke-dasharray="5,5"/>
+                    <polygon points="90,45 84,37 93,37" fill="#ff758c"/>
+                </svg>
+            </div>
+            <h2>🎬 YÊU CẦU XOAY NGANG MÀN HÌNH</h2>
+            <p>Vui lòng xoay ngang thiết bị để thưởng thức trọn vẹn thước phim sinh nhật lãng mạn này nhé!</p>
+            <span class="sub-hint">(Hãy bật chế độ "Tự động xoay màn hình" trên điện thoại nha ✨)</span>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER (FULLSCREEN VIEWPORT COVER) -->
+    <div id="app-container" class="app-viewport">
+
+        <!-- BACKGROUND CANVASES (STARS, SHOOTING STARS & BOKEH LIGHTS) -->
+        <canvas id="bg-canvas"></canvas>
+        <div class="vignette-overlay"></div>
+        <div class="cinematic-bars">
+            <div class="bar top-bar"></div>
+            <div class="bar bottom-bar"></div>
+        </div>
+
+        <!-- CONTROL BUTTONS HEADER BAR (ONLY AUDIO CONTROL) -->
+        <div class="header-controls">
+            <div class="brand-logo">🌸 Happy Birthday</div>
+            <button id="audio-control-btn" class="audio-btn" title="Bật/Tắt Nhạc nền">
+                <span class="audio-icon">🎵</span>
+                <span class="audio-text">Nhạc: <strong id="audio-status">Bật</strong></span>
+            </button>
+        </div>
+
+        <!-- PHASE 1: REAL-TIME COUNTDOWN (STEP 3) -->
+        <section id="stage-countdown" class="stage active">
+            <div class="responsive-stage-box countdown-layout">
+                <div class="countdown-wrapper">
+                    <div class="cute-badge">✨ KHOẢNH KHẮC ĐẶC BIỆT DÀNH CHO EM ✨</div>
+                    <h1 class="main-heading">ĐẾM NGƯỢC KỶ NIỆM</h1>
+                    <p class="sub-heading">"Mỗi giây phút trôi qua đều dẫn ta đến khoảnh khắc ngọt ngào nhất..."</p>
+
+                    <!-- HOLOGRAM CLOCK CARDS -->
+                    <div class="digital-clock hologram-clock">
+                        <div class="clock-unit">
+                            <span id="days" class="number">00</span>
+                            <span class="label">Ngày</span>
+                        </div>
+                        <div class="clock-separator">:</div>
+                        <div class="clock-unit">
+                            <span id="hours" class="number">00</span>
+                            <span class="label">Giờ</span>
+                        </div>
+                        <div class="clock-separator">:</div>
+                        <div class="clock-unit">
+                            <span id="minutes" class="number">00</span>
+                            <span class="label">Phút</span>
+                        </div>
+                        <div class="clock-separator">:</div>
+                        <div class="clock-unit">
+                            <span id="seconds" class="number">00</span>
+                            <span class="label">Giây</span>
+                        </div>
+                        <div class="clock-unit ms-unit">
+                            <span id="milliseconds" class="number-small">00</span>
+                            <span class="label">ms</span>
+                        </div>
+                    </div>
+
+                    <div class="time-sync-info">
+                        <span class="pulse-dot"></span>
+                        <span id="sync-status">Đang kết nối đồng hồ chuẩn Internet...</span>
+                    </div>
+
+                    <button id="btn-start-audio-early" class="btn-glow-primary">
+                        <span class="btn-icon">💖</span> Mở Hộp Âm Nhạc & Trải Nghiệm Trọn Vẹn
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHASE 2 & 3: MIDNIGHT BURST & CAKE CANDLE WISH (STEP 4) -->
+        <section id="stage-party" class="stage">
+            <div class="responsive-stage-box party-scene-container" id="party-stage-layer">
+                
+                <!-- BANNER -->
+                <div class="banner-container">
+                    <img src="assets/images/balloons-banner.svg?v=500.0" alt="Happy Birthday Banner" class="balloons-banner-img">
+                </div>
+
+                <!-- STAGE CENTER: NEON WISHES & CAKE CANDLE INTERACTION -->
+                <div class="stage-center">
+                    <div class="spotlight spotlight-left"></div>
+                    <div class="spotlight spotlight-right"></div>
+                    
+                    <div class="wishes-neon-text">
+                        <span class="glow-word">CHÚC MỪNG</span>
+                        <span class="glow-word highlight">SINH NHẬT!</span>
+                    </div>
+
+                    <!-- INTERACTIVE CAKE WISH AREA -->
+                    <div class="table-setup">
+                        <div id="interactive-cake-wrapper" class="cake-wrapper" title="Chạm vào nến để ước và thổi nến!">
+                            <img src="assets/images/birthday-cake.svg?v=500.0" alt="Birthday Cake SVG" class="cake-img-vector">
+                            
+                            <!-- INTERACTIVE CANDLE FLAMES -->
+                            <div id="flames-group" class="flames-container">
+                                <div class="candle-flame flame-1"></div>
+                                <div class="candle-flame flame-2"></div>
+                                <div class="candle-flame flame-3"></div>
+                            </div>
+                        </div>
+
+                        <!-- CANDLE BLOW HINT BADGE -->
+                        <div id="candle-hint" class="candle-blow-badge">
+                            ✨ Em hãy nhắm mắt ước và chạm vào nến để thổi nhé! ✨
+                        </div>
+
+                        <div class="table-surface"></div>
+                    </div>
+                </div>
+
+                <!-- FLOATING POLAROID MEMORY CARDS -->
+                <div class="floating-memories">
+                    <div class="polaroid-card polaroid-1">
+                        <div class="polaroid-img-box">
+                            <img src="assets/images/photo1.svg?v=500.0" alt="Memory Photo 1" class="polaroid-img">
+                        </div>
+                        <p class="polaroid-caption">Nụ cười rạng rỡ ✨</p>
+                    </div>
+                    <div class="polaroid-card polaroid-2">
+                        <div class="polaroid-img-box">
+                            <img src="assets/images/photo2.svg?v=500.0" alt="Memory Photo 2" class="polaroid-img">
+                        </div>
+                        <p class="polaroid-caption">Khoảnh khắc ngọt ngào 💕</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHASE 4 & 5: HARMONIOUS FULLSCREEN STAGE (STEP 5 & 6) -->
+        <section id="stage-gift" class="stage">
+            <div class="responsive-stage-box cinematic-garden-container" id="garden-stage-layer">
+                
+                <!-- MOON & STARRY SKY -->
+                <div class="sky-background">
+                    <div class="moon"></div>
+                    <div class="twinkle-stars"></div>
+                </div>
+
+                <!-- GARDEN GROUND FLOOR -->
+                <div class="garden-floor"></div>
+
+                <!-- HARMONIOUS 3-COLUMN CHARACTERS & GIFT STAGE -->
+                <div class="characters-stage">
+                    
+                    <!-- MALE VECTOR CHARACTER -->
+                    <div class="character-box male-character-box">
+                        <div class="speech-bubble male-speech">
+                            "Chúc mừng sinh nhật em! Anh có món quà đặc biệt chứa đựng tất cả yêu thương này... 🎁"
+                        </div>
+                        <img src="assets/images/male-character.svg?v=500.0" alt="Male Character SVG" class="character-img-vector male-img">
+                    </div>
+
+                    <!-- INTERACTIVE GIFT BOX IN CENTER COLUMN -->
+                    <div class="gift-center-area">
+                        <div id="interactive-gift-box" class="gift-box-interactive" title="Nhấn vào đây để mở thiệp & xem album!">
+                            <img src="assets/images/gift-box.svg?v=500.0" alt="Gift Box SVG" class="gift-img-vector">
+                            <div class="gift-glow-ring"></div>
+                        </div>
+                        <div class="click-hint-badge">✨ Nhấn mở quà & Album ảnh ✨</div>
+                    </div>
+
+                    <!-- FEMALE VECTOR CHARACTER -->
+                    <div class="character-box female-character-box">
+                        <div class="speech-bubble female-speech">
+                            "Oa bất ngờ quá! Cảm ơn anh rất nhiều! 💕"
+                        </div>
+                        <img src="assets/images/female-character.svg?v=500.0" alt="Female Character SVG" class="character-img-vector female-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WAX-SEALED LOVE LETTER & MULTI-MEDIA POLAROID ALBUM CAROUSEL MODAL (STEP 6) -->
+        <div id="card-modal" class="card-modal-overlay">
+            <div class="card-modal-backdrop"></div>
+            
+            <div class="card-container 3d-paper">
+                <button id="btn-close-card" class="card-close-btn" title="Đóng thiệp">&times;</button>
+
+                <div class="card-inner">
+                    <!-- Envelope Wax Seal Header -->
+                    <div class="wax-seal-header">
+                        <div class="wax-seal-icon">💌</div>
+                        <div class="wax-seal-stamp">SEALED WITH LOVE</div>
+                    </div>
+
+                    <div class="card-header">
+                        <h2>THƯ CHÚC MỪNG SINH NHẬT</h2>
+                        <p class="handwriting-sub">Gửi đến người nhận tuyệt vời nhất thế gian...</p>
+                    </div>
+
+                    <!-- Handwritten Letter Content -->
+                    <div class="card-body handwriting-font">
+                        <p class="salutation">Thân gửi Em,</p>
+                        
+                        <p class="letter-paragraph">
+                            Chúc mừng sinh nhật tuổi mới thật rạng rỡ và bình yên! Cảm ơn em vì đã xuất hiện, mang theo nụ cười ấm áp và làm cho mỗi ngày trôi qua đều trở nên có ý nghĩa.
+                        </p>
+                        
+                        <p class="letter-paragraph">
+                            Mong rằng ở tuổi mới, em sẽ luôn giữ trọn niềm tin, luôn tràn ngập tiếng cười và vững bước chinh phục mọi ước mơ. Dù ở bất cứ đâu, em hãy nhớ rằng luôn có người trân trọng và yêu thương em thật nhiều!
+                        </p>
+
+                        <div class="signature-section">
+                            <p class="closing">Yêu thương sâu sắc,</p>
+                            <p class="signature-name">Gửi từ trái tim ✨💖</p>
+                        </div>
+                    </div>
+
+                    <!-- MULTI-MEDIA POLAROID ALBUM CAROUSEL (PHOTOS + VIDEOS FIT WITHOUT DISTORTION) -->
+                    <div class="album-carousel-section">
+                        <h3 class="album-title">📸 Album Kỷ Niệm (Nhiều Ảnh & Video)</h3>
+                        
+                        <div class="carousel-wrapper">
+                            <button id="carousel-prev" class="carousel-btn prev-btn" title="Trước">&#10094;</button>
+                            
+                            <div class="carousel-track-container">
+                                <div id="carousel-track" class="carousel-track">
+                                    
+                                    <!-- Slide 1: Photo 1 -->
+                                    <div class="carousel-slide active">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container">
+                                                <img src="assets/images/photo1.svg?v=500.0" alt="Memory Photo 1" class="fitted-media">
+                                            </div>
+                                            <div class="slide-caption">✨ Nụ cười rạng rỡ nhất của em</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Slide 2: Photo 2 -->
+                                    <div class="carousel-slide">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container">
+                                                <img src="assets/images/photo2.svg?v=500.0" alt="Memory Photo 2" class="fitted-media">
+                                            </div>
+                                            <div class="slide-caption">💕 Bình yên trong từng khoảnh khắc</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Slide 3: Video 1 -->
+                                    <div class="carousel-slide">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container video-media">
+                                                <video class="fitted-media memory-video" autoplay loop muted playsinline poster="assets/images/photo3.svg">
+                                                    <source src="assets/videos/memory-clip1.mp4" type="video/mp4">
+                                                    <img src="assets/images/photo3.svg" alt="Memory Video Fallback" class="fitted-media">
+                                                </video>
+                                                <span class="video-badge">🎥 Video Kỷ Niệm</span>
+                                            </div>
+                                            <div class="slide-caption">🎬 Thước phim kỷ niệm đáng nhớ</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 4: Photo 3 -->
+                                    <div class="carousel-slide">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container">
+                                                <img src="assets/images/photo3.svg?v=500.0" alt="Memory Photo 3" class="fitted-media">
+                                            </div>
+                                            <div class="slide-caption">🌸 Tuổi mới rạng rỡ & hạnh phúc</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 5: Video 2 -->
+                                    <div class="carousel-slide">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container video-media">
+                                                <video class="fitted-media memory-video" autoplay loop muted playsinline poster="assets/images/photo1.svg">
+                                                    <source src="assets/videos/memory-clip2.mp4" type="video/mp4">
+                                                    <img src="assets/images/photo1.svg" alt="Memory Video Fallback 2" class="fitted-media">
+                                                </video>
+                                                <span class="video-badge">🎥 Video Kỷ Niệm</span>
+                                            </div>
+                                            <div class="slide-caption">🌟 Nụ cười ấm áp tuổi mới</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            <button id="carousel-next" class="carousel-btn next-btn" title="Tiếp">&#10095;</button>
+                        </div>
+
+                        <!-- Dynamic Carousel Indicators -->
+                        <div class="carousel-dots" id="carousel-dots">
+                            <span class="dot active" data-index="0"></span>
+                            <span class="dot" data-index="1"></span>
+                            <span class="dot" data-index="2"></span>
+                            <span class="dot" data-index="3"></span>
+                            <span class="dot" data-index="4"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="sparkle-decoration">🌸 ✨ 🎂 🎈 🎁 💖 ✨ 🌸</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CUSTOM JAVASCRIPT MODULES (with Hard Cache-Buster v=500.0) -->
+    <script src="js/audio.js?v=500.0"></script>
+    <script src="js/timeSync.js?v=500.0"></script>
+    <script src="js/cinematic.js?v=500.0"></script>
+    <script src="js/main.js?v=500.0"></script>
+</body>
+</html>

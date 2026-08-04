@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cute-gift-base" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff9a9e"/>
+      <stop offset="100%" stop-color="#fecfef"/>
+    </linearGradient>
+
+    <linearGradient id="cute-ribbon-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#ffe49e"/>
+      <stop offset="100%" stop-color="#ffd166"/>
+    </linearGradient>
+
+    <filter id="cute-gift-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#ff758c" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#cute-gift-shadow)">
+    <!-- Cute Gift Box Base -->
+    <rect x="45" y="105" width="150" height="110" rx="18" fill="url(#cute-gift-base)" stroke="#ffffff" stroke-width="4"/>
+
+    <!-- Vertical Ribbon -->
+    <rect x="107" y="105" width="26" height="110" fill="url(#cute-ribbon-gold)"/>
+
+    <!-- Box Lid -->
+    <rect x="35" y="80" width="170" height="34" rx="12" fill="url(#cute-gift-base)" stroke="#ffffff" stroke-width="4"/>
+    <rect x="107" y="80" width="26" height="34" fill="url(#cute-ribbon-gold)"/>
+
+    <!-- Fluffy Bow Ribbon Left -->
+    <path d="M 120,80 C 70,30 30,65 110,80 Z" fill="url(#cute-ribbon-gold)" stroke="#ffffff" stroke-width="2"/>
+
+    <!-- Fluffy Bow Ribbon Right -->
+    <path d="M 120,80 C 170,30 210,65 130,80 Z" fill="url(#cute-ribbon-gold)" stroke="#ffffff" stroke-width="2"/>
+
+    <!-- Bow Center Heart Knot -->
+    <path d="M 120,78 Q 120,72 124,72 Q 128,72 128,78 Q 128,82 124,86 L 120,90 L 116,86 Q 112,82 112,78 Q 112,72 116,72 Q 120,72 120,78 Z" fill="#ff4d6d"/>
+
+    <!-- Ribbon Tails -->
+    <path d="M 112,88 L 85,120 L 102,120 Z" fill="url(#cute-ribbon-gold)"/>
+    <path d="M 128,88 L 155,120 L 138,120 Z" fill="url(#cute-ribbon-gold)"/>
+
+    <!-- Cute Sparkles & Hearts around Gift -->
+    <path d="M 22,65 Q 22,60 26,60 Q 30,60 30,65 Q 30,69 26,73 L 22,77 L 18,73 Q 14,69 14,65 Q 14,60 18,60 Q 22,60 22,65 Z" fill="#ff758c"/>
+    <path d="M 215,60 L 220,68 L 228,72 L 220,76 L 215,84 L 210,76 L 202,72 L 210,68 Z" fill="#ffd166"/>
+  </g>
+</svg>

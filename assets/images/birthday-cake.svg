@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 340" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cake-base-1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb7b2"/>
+      <stop offset="100%" stop-color="#ff758c"/>
+    </linearGradient>
+
+    <linearGradient id="cake-base-2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a1c4fd"/>
+      <stop offset="100%" stop-color="#c2e9fb"/>
+    </linearGradient>
+
+    <linearGradient id="cream-drip" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fff0f3"/>
+    </linearGradient>
+
+    <linearGradient id="gold-shine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff3a1"/>
+      <stop offset="50%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#ffb703"/>
+    </linearGradient>
+
+    <filter id="cute-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#ff758c" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#cute-glow)">
+    <!-- Cute Cake Stand Plate -->
+    <ellipse cx="160" cy="290" rx="140" ry="24" fill="#ffffff" stroke="#ffb7b2" stroke-width="3"/>
+    <ellipse cx="160" cy="285" rx="130" ry="18" fill="#fff5f7"/>
+
+    <!-- Bottom Layer Cake (Pastel Pink) -->
+    <rect x="55" y="200" width="210" height="75" rx="20" fill="url(#cake-base-1)"/>
+    <!-- Cream Drips Bottom -->
+    <path d="M 55,200 Q 75,230 95,205 Q 115,235 135,205 Q 155,240 175,205 Q 195,230 215,205 Q 235,235 265,200 Z" fill="url(#cream-drip)"/>
+
+    <!-- Cute Heart Stamps on Bottom Layer -->
+    <path d="M 100,240 Q 100,233 105,233 Q 110,233 110,240 Q 110,245 105,250 L 100,255 L 95,250 Q 90,245 90,240 Q 90,233 95,233 Q 100,233 100,240 Z" fill="#ffffff" opacity="0.8"/>
+    <path d="M 160,240 Q 160,233 165,233 Q 170,233 170,240 Q 170,245 165,250 L 160,255 L 155,250 Q 150,245 150,240 Q 150,233 155,233 Q 160,233 160,240 Z" fill="#ffffff" opacity="0.8"/>
+    <path d="M 220,240 Q 220,233 225,233 Q 230,233 230,240 Q 230,245 225,250 L 220,255 L 215,250 Q 210,245 210,240 Q 210,233 215,233 Q 220,233 220,240 Z" fill="#ffffff" opacity="0.8"/>
+
+    <!-- Top Layer Cake (Pastel Lavender) -->
+    <rect x="85" y="130" width="150" height="75" rx="16" fill="url(#cake-base-2)"/>
+    <!-- Cream Drips Top -->
+    <path d="M 85,130 Q 105,160 125,135 Q 145,165 165,135 Q 185,160 205,135 Q 225,160 235,130 Z" fill="url(#cream-drip)"/>
+
+    <!-- Strawberry Toppings -->
+    <!-- Strawberry 1 -->
+    <g transform="translate(105, 105)">
+      <path d="M 15,5 Q 30,5 25,25 Q 15,35 5,25 Q 0,5 15,5 Z" fill="#ff4d6d"/>
+      <circle cx="10" cy="15" r="1" fill="#fff"/>
+      <circle cx="18" cy="20" r="1" fill="#fff"/>
+      <path d="M 12,5 L 15,0 L 18,5 Z" fill="#70e000"/>
+    </g>
+    <!-- Strawberry 2 -->
+    <g transform="translate(145, 95)">
+      <path d="M 15,5 Q 30,5 25,25 Q 15,35 5,25 Q 0,5 15,5 Z" fill="#ff4d6d"/>
+      <circle cx="10" cy="15" r="1" fill="#fff"/>
+      <circle cx="18" cy="20" r="1" fill="#fff"/>
+      <path d="M 12,5 L 15,0 L 18,5 Z" fill="#70e000"/>
+    </g>
+    <!-- Strawberry 3 -->
+    <g transform="translate(185, 105)">
+      <path d="M 15,5 Q 30,5 25,25 Q 15,35 5,25 Q 0,5 15,5 Z" fill="#ff4d6d"/>
+      <circle cx="10" cy="15" r="1" fill="#fff"/>
+      <circle cx="18" cy="20" r="1" fill="#fff"/>
+      <path d="M 12,5 L 15,0 L 18,5 Z" fill="#70e000"/>
+    </g>
+
+    <!-- Cute Candles -->
+    <!-- Candle 1 -->
+    <rect x="120" y="65" width="10" height="50" rx="5" fill="#fff" stroke="#ff758c" stroke-width="2"/>
+    <path d="M 125,65 L 125,58" stroke="#333" stroke-width="2"/>
+
+    <!-- Candle 2 (Center Gold) -->
+    <rect x="155" y="50" width="10" height="60" rx="5" fill="#fff" stroke="#ffd166" stroke-width="2"/>
+    <path d="M 160,50 L 160,43" stroke="#333" stroke-width="2"/>
+
+    <!-- Candle 3 -->
+    <rect x="190" y="65" width="10" height="50" rx="5" fill="#fff" stroke="#a1c4fd" stroke-width="2"/>
+    <path d="M 195,65 L 195,58" stroke="#333" stroke-width="2"/>
+
+    <!-- Sparkles around Cake -->
+    <path d="M 40,160 L 45,170 L 55,175 L 45,180 L 40,190 L 35,180 L 25,175 L 35,170 Z" fill="#ffd166"/>
+    <path d="M 270,140 L 274,148 L 282,152 L 274,156 L 270,164 L 266,156 L 258,152 L 266,148 Z" fill="#ff758c"/>
+  </g>
+</svg>
