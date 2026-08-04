@@ -1,9 +1,9 @@
 /* ==========================================================================
-   PURE REAL-TIME PRODUCTION CONTROLLER (CUTE CORNER MENU & MINIMALIST v900.0)
+   PURE REAL-TIME PRODUCTION CONTROLLER (TAP TOGGLE & 8S AUTO-HIDE v1000.0)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("🔒 Production Mode: Cute Floating Corner Menu Enabled.");
+    console.log("🔒 Production Mode: Tap Toggle & Auto-Hide Cute Corner Menu Enabled.");
 
     // DOM Elements
     const stageCountdown = document.getElementById('stage-countdown');
@@ -35,18 +35,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log("🎯 Real Birthday Moment Locked:", targetBirthdayDate);
 
     // ----------------------------------------------------------------------
-    // CUTE CORNER MENU TOGGLE HANDLER
+    // CUTE CORNER MENU TAP TOGGLE & 8-SECOND AUTO-HIDE HANDLER
     // ----------------------------------------------------------------------
+    let autoHideMenuTimer = null;
+
+    const resetAutoHideTimer = () => {
+        if (autoHideMenuTimer) clearTimeout(autoHideMenuTimer);
+        autoHideMenuTimer = setTimeout(() => {
+            if (cuteCornerWrapper) {
+                cuteCornerWrapper.classList.remove('active');
+                console.log("⏳ Cute Corner Menu auto-hidden after 8s.");
+            }
+        }, 8000);
+    };
+
     if (cuteToggleTrigger && cuteCornerWrapper) {
         cuteToggleTrigger.addEventListener('click', (e) => {
             e.stopPropagation();
-            cuteCornerWrapper.classList.toggle('active');
+            const isActive = cuteCornerWrapper.classList.contains('active');
+
+            if (isActive) {
+                cuteCornerWrapper.classList.remove('active');
+                if (autoHideMenuTimer) clearTimeout(autoHideMenuTimer);
+            } else {
+                cuteCornerWrapper.classList.add('active');
+                resetAutoHideTimer();
+            }
         });
 
-        // Close cute menu panel when clicking outside
+        // Close cute menu panel when clicking anywhere outside
         document.addEventListener('click', (e) => {
-            if (!cuteCornerWrapper.contains(e.target)) {
+            if (cuteCornerWrapper && !cuteCornerWrapper.contains(e.target)) {
                 cuteCornerWrapper.classList.remove('active');
+                if (autoHideMenuTimer) clearTimeout(autoHideMenuTimer);
             }
         });
     }
@@ -97,6 +118,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 window.audioMgr.stopBackgroundMusic();
                 if (audioStatus) audioStatus.textContent = "Tắt";
             }
+
+            if (cuteCornerWrapper) cuteCornerWrapper.classList.remove('active');
         });
     }
 
@@ -135,6 +158,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const isMuted = window.audioMgr.toggleMute();
                 if (audioStatus) audioStatus.textContent = isMuted ? "Tắt" : "Bật";
             }
+            resetAutoHideTimer();
         });
     }
 

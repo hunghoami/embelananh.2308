@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CUTE FLOATING CORNER MENU & MINIMALIST STYLESHEET (v900.0)
+   CUTE FLOATING CORNER MENU & MINIMALIST STYLESHEET (v1000.0)
    ========================================================================== */
 
 :root {
@@ -260,7 +260,7 @@ html, body {
 .cinematic-bars .bottom-bar { bottom: 0; }
 
 /* --------------------------------------------------------------------------
-   CUTE FLOATING CORNER COLLAPSIBLE MENU (THANH ẨN GÓC PHẢI CUTE)
+   CUTE FLOATING CORNER COLLAPSIBLE MENU (EXPLICIT TAP TOGGLE + AUTO HIDE)
    -------------------------------------------------------------------------- */
 .cute-corner-wrapper {
     position: absolute;
@@ -277,7 +277,7 @@ html, body {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(255, 117, 140, 0.3), rgba(255, 215, 0, 0.3));
+    background: linear-gradient(135deg, rgba(255, 117, 140, 0.35), rgba(255, 215, 0, 0.35));
     border: 1.5px solid var(--rose-pink);
     color: #fff;
     font-size: 1rem;
@@ -292,7 +292,7 @@ html, body {
 }
 
 .cute-trigger-btn:hover {
-    transform: scale(1.18) rotate(15deg);
+    transform: scale(1.15) rotate(15deg);
     box-shadow: 0 0 25px var(--rose-pink);
 }
 
@@ -313,8 +313,7 @@ html, body {
     transition: all 0.35s var(--ease-cinematic);
 }
 
-/* Show cute panel when wrapper is active or hovered */
-.cute-corner-wrapper:hover .cute-menu-panel,
+/* Show cute panel ONLY when wrapper has .active class */
 .cute-corner-wrapper.active .cute-menu-panel {
     opacity: 1;
     visibility: visible;
