@@ -1,25 +1,25 @@
 /* ==========================================================================
-   PURE REAL-TIME PRODUCTION CONTROLLER (AUTO FULLSCREEN & LANDSCAPE LOCK v700.0)
+   PURE REAL-TIME PRODUCTION CONTROLLER (MINIMALIST & EXIT HANDLER v800.0)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("🔒 Production Mode: Real-time Countdown, Auto Fullscreen & Landscape Lock Enabled.");
+    console.log("🔒 Production Mode: Clean Minimalist View & Exit Button Handler Enabled.");
 
     // DOM Elements
     const stageCountdown = document.getElementById('stage-countdown');
     const stageParty = document.getElementById('stage-party');
     const audioBtn = document.getElementById('audio-control-btn');
     const audioStatus = document.getElementById('audio-status');
-    const btnStartAudio = document.getElementById('btn-start-audio-early');
     const interactiveCakeWrapper = document.getElementById('interactive-cake-wrapper');
     const interactiveGiftBox = document.getElementById('interactive-gift-box');
     const btnCloseCard = document.getElementById('btn-close-card');
 
-    // Immersive First-Access Controls
+    // Controls
     const entryOverlay = document.getElementById('immersive-entry-overlay');
     const btnStartImmersive = document.getElementById('btn-start-immersive-experience');
     const btnToggleFullscreen = document.getElementById('btn-toggle-fullscreen');
     const btnOverlayFullscreen = document.getElementById('btn-trigger-fullscreen-overlay');
+    const btnExitApp = document.getElementById('btn-exit-app');
 
     // Multi-Media Polaroid Carousel Elements
     const carouselTrack = document.getElementById('carousel-track');
@@ -35,18 +35,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log("🎯 Real Birthday Moment Locked:", targetBirthdayDate);
 
     // ----------------------------------------------------------------------
-    // AUTO FULLSCREEN & LANDSCAPE LOCK HANDLER (ANDROID & WEBKIT SUPPORT)
+    // FULLSCREEN & LANDSCAPE LOCK HANDLER
     // ----------------------------------------------------------------------
     const requestFullscreenAndLandscapeLock = () => {
         const docEl = document.documentElement;
 
-        // 1. Request Fullscreen
         const fsPromise = docEl.requestFullscreen ? docEl.requestFullscreen() :
                           (docEl.webkitRequestFullscreen ? docEl.webkitRequestFullscreen() : Promise.resolve());
 
         if (fsPromise && fsPromise.then) {
             fsPromise.then(() => {
-                // 2. Lock Screen Orientation to Landscape if supported
                 if (screen.orientation && screen.orientation.lock) {
                     screen.orientation.lock('landscape').catch(() => {});
                 }
@@ -57,11 +55,32 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        // Hide Immersive Entry Overlay
         if (entryOverlay) {
             entryOverlay.classList.remove('active');
         }
     };
+
+    // ----------------------------------------------------------------------
+    // EXIT FULLSCREEN HANDLER (NÚT THOÁT LUÔN HIỂN THỊ)
+    // ----------------------------------------------------------------------
+    if (btnExitApp) {
+        btnExitApp.addEventListener('click', (e) => {
+            e.stopPropagation();
+            console.log("🚪 Exit Button Tapped. Exiting Fullscreen...");
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+
+            if (window.audioMgr) {
+                window.audioMgr.stopBackgroundMusic();
+                if (audioStatus) audioStatus.textContent = "Tắt";
+            }
+        });
+    }
 
     if (btnStartImmersive) {
         btnStartImmersive.addEventListener('click', (e) => {
@@ -85,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // 1. Audio Interaction Unlock
+    // Audio Interaction Unlock
     const unlockAudio = () => {
         requestFullscreenAndLandscapeLock();
         if (window.audioMgr) {
@@ -98,15 +117,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.body.addEventListener('click', unlockAudio, { once: true });
     document.body.addEventListener('touchstart', unlockAudio, { once: true });
 
-    if (btnStartAudio) {
-        btnStartAudio.addEventListener('click', (e) => {
-            e.stopPropagation();
-            unlockAudio();
-            btnStartAudio.style.opacity = '0.7';
-            btnStartAudio.innerHTML = '🎵 Đã mở hộp âm nhạc!';
-        });
-    }
-
     if (audioBtn) {
         audioBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -117,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // 2. Interactive Cake Candle Blowing
+    // Interactive Cake Candle Blowing
     if (interactiveCakeWrapper) {
         interactiveCakeWrapper.addEventListener('click', () => {
             if (window.cinematicOrch) {
@@ -126,7 +136,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // 3. Fetch Real-time Internet Clock & Run Pure Countdown
+    // Fetch Real-time Internet Clock & Run Pure Countdown
     if (window.timeSyncMgr) {
         await window.timeSyncMgr.fetchInternetTime();
         window.timeSyncMgr.setTargetTime(targetBirthdayDate);
@@ -136,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // 4. Interactive Gift Box & Love Letter Modal
+    // Interactive Gift Box & Love Letter Modal
     if (interactiveGiftBox) {
         interactiveGiftBox.addEventListener('click', () => {
             if (window.cinematicOrch) {
@@ -153,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // 5. MULTI-MEDIA CAROUSEL SLIDER CONTROLLER
+    // MULTI-MEDIA CAROUSEL SLIDER CONTROLLER
     const updateCarousel = (index) => {
         currentSlide = (index + totalSlides) % totalSlides;
         if (carouselTrack) {

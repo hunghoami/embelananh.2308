@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Happy Birthday! 🎬 - Tuyệt Tác Sinh Nhật Điện Ảnh Fullscreen</title>
-    <meta name="description" content="Trang web chúc mừng sinh nhật điện ảnh độc đáo, tự động mở toàn màn hình & xoay ngang thiết bị.">
+    <title>Happy Birthday! 🎬 - Tuyệt Tác Sinh Nhật Điện Ảnh</title>
+    <meta name="description" content="Trang web chúc mừng sinh nhật điện ảnh độc đáo, tối giản tinh tế, có nút thoát toàn màn hình luôn hiển thị.">
     
     <!-- Anti-Cache Meta Tags -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -20,12 +20,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     
-    <!-- Custom Styles (with Hard Cache-Buster v=700.0) -->
-    <link rel="stylesheet" href="css/style.css?v=700.0">
+    <!-- Custom Styles (with Hard Cache-Buster v=800.0) -->
+    <link rel="stylesheet" href="css/style.css?v=800.0">
 </head>
 <body>
 
-    <!-- FIRST ACCESS IMMERSIVE ENTRY MODAL (AUTO FULLSCREEN & LANDSCAPE LOCK) -->
+    <!-- IMMERSIVE FIRST-ACCESS ENTRY OVERLAY -->
     <div id="immersive-entry-overlay" class="immersive-entry-overlay active">
         <div class="entry-modal-card">
             <div class="sparkle-badge">🎬 THƯỚC PHIM SINH NHẬT ĐIỆN ẢNH</div>
@@ -33,7 +33,7 @@
             <p>Nhấn vào nút bên dưới để tự động kích hoạt chế độ **Toàn Màn Hình & Xoay Ngang** cùng âm nhạc ngọt ngào nhé!</p>
             
             <button id="btn-start-immersive-experience" class="btn-start-experience">
-                <span class="star-icon">✨</span> BẮT ĐẦU TRẢI NGHIỆM (FULLSCREEN & XOAY NGANG) <span class="star-icon">✨</span>
+                <span class="star-icon">✨</span> BẮT ĐẦU TRẢI NGHIỆM <span class="star-icon">✨</span>
             </button>
         </div>
     </div>
@@ -66,9 +66,9 @@
             <div class="bar bottom-bar"></div>
         </div>
 
-        <!-- CONTROL BUTTONS HEADER BAR -->
+        <!-- CONTROL BUTTONS HEADER BAR (WITH ALWAYS-VISIBLE EXIT BUTTON) -->
         <div class="header-controls">
-            <div class="brand-logo">🌸 Happy Birthday</div>
+            <div></div> <!-- Clean spacer replacing logo -->
             
             <div class="header-right-group">
                 <button id="btn-toggle-fullscreen" class="fullscreen-header-btn" title="Phóng to Toàn Màn Hình">
@@ -80,18 +80,23 @@
                     <span class="audio-icon">🎵</span>
                     <span class="audio-text">Nhạc: <strong id="audio-status">Bật</strong></span>
                 </button>
+
+                <!-- ALWAYS VISIBLE SMALL EXIT BUTTON -->
+                <button id="btn-exit-app" class="exit-header-btn" title="Thoát ứng dụng">
+                    <span class="exit-icon">✖</span>
+                    <span class="exit-text">Thoát</span>
+                </button>
             </div>
         </div>
 
-        <!-- PHASE 1: REAL-TIME COUNTDOWN (STEP 3) -->
+        <!-- PHASE 1: CLEAN MINIMALIST REAL-TIME COUNTDOWN (STEP 3) -->
         <section id="stage-countdown" class="stage active">
             <div class="responsive-stage-box countdown-layout">
                 <div class="countdown-wrapper">
-                    <div class="cute-badge">✨ KHOẢNH KHẮC ĐẶC BIỆT DÀNH CHO EM ✨</div>
                     <h1 class="main-heading">ĐẾM NGƯỢC KỶ NIỆM</h1>
                     <p class="sub-heading">"Mỗi giây phút trôi qua đều dẫn ta đến khoảnh khắc ngọt ngào nhất..."</p>
 
-                    <!-- HOLOGRAM CLOCK CARDS -->
+                    <!-- CLEAN ELEGANT HOLOGRAM CLOCK CARDS -->
                     <div class="digital-clock hologram-clock">
                         <div class="clock-unit">
                             <span id="days" class="number">00</span>
@@ -117,15 +122,6 @@
                             <span class="label">ms</span>
                         </div>
                     </div>
-
-                    <div class="time-sync-info">
-                        <span class="pulse-dot"></span>
-                        <span id="sync-status">Đang kết nối đồng hồ chuẩn Internet...</span>
-                    </div>
-
-                    <button id="btn-start-audio-early" class="btn-glow-primary">
-                        <span class="btn-icon">💖</span> Mở Hộp Âm Nhạc & Trải Nghiệm Trọn Vẹn
-                    </button>
                 </div>
             </div>
         </section>
@@ -136,7 +132,7 @@
                 
                 <!-- BANNER -->
                 <div class="banner-container">
-                    <img src="assets/images/balloons-banner.svg?v=700.0" alt="Happy Birthday Banner" class="balloons-banner-img">
+                    <img src="assets/images/balloons-banner.svg?v=800.0" alt="Happy Birthday Banner" class="balloons-banner-img">
                 </div>
 
                 <!-- STAGE CENTER: NEON WISHES & CAKE CANDLE INTERACTION -->
@@ -152,7 +148,7 @@
                     <!-- INTERACTIVE CAKE WISH AREA -->
                     <div class="table-setup">
                         <div id="interactive-cake-wrapper" class="cake-wrapper" title="Chạm vào nến để ước và thổi nến!">
-                            <img src="assets/images/birthday-cake.svg?v=700.0" alt="Birthday Cake SVG" class="cake-img-vector">
+                            <img src="assets/images/birthday-cake.svg?v=800.0" alt="Birthday Cake SVG" class="cake-img-vector">
                             
                             <!-- INTERACTIVE CANDLE FLAMES -->
                             <div id="flames-group" class="flames-container">
@@ -175,13 +171,13 @@
                 <div class="floating-memories">
                     <div class="polaroid-card polaroid-1">
                         <div class="polaroid-img-box">
-                            <img src="assets/images/photo1.svg?v=700.0" alt="Memory Photo 1" class="polaroid-img">
+                            <img src="assets/images/photo1.svg?v=800.0" alt="Memory Photo 1" class="polaroid-img">
                         </div>
                         <p class="polaroid-caption">Nụ cười rạng rỡ ✨</p>
                     </div>
                     <div class="polaroid-card polaroid-2">
                         <div class="polaroid-img-box">
-                            <img src="assets/images/photo2.svg?v=700.0" alt="Memory Photo 2" class="polaroid-img">
+                            <img src="assets/images/photo2.svg?v=800.0" alt="Memory Photo 2" class="polaroid-img">
                         </div>
                         <p class="polaroid-caption">Khoảnh khắc ngọt ngào 💕</p>
                     </div>
@@ -210,13 +206,13 @@
                         <div class="speech-bubble male-speech">
                             "Chúc mừng sinh nhật em! Anh có món quà đặc biệt chứa đựng tất cả yêu thương này... 🎁"
                         </div>
-                        <img src="assets/images/male-character.svg?v=700.0" alt="Male Character SVG" class="character-img-vector male-img">
+                        <img src="assets/images/male-character.svg?v=800.0" alt="Male Character SVG" class="character-img-vector male-img">
                     </div>
 
                     <!-- INTERACTIVE GIFT BOX IN CENTER COLUMN -->
                     <div class="gift-center-area">
                         <div id="interactive-gift-box" class="gift-box-interactive" title="Nhấn vào đây để mở thiệp & xem album!">
-                            <img src="assets/images/gift-box.svg?v=700.0" alt="Gift Box SVG" class="gift-img-vector">
+                            <img src="assets/images/gift-box.svg?v=800.0" alt="Gift Box SVG" class="gift-img-vector">
                             <div class="gift-glow-ring"></div>
                         </div>
                         <div class="click-hint-badge">✨ Nhấn mở quà & Album ảnh ✨</div>
@@ -227,7 +223,7 @@
                         <div class="speech-bubble female-speech">
                             "Oa bất ngờ quá! Cảm ơn anh rất nhiều! 💕"
                         </div>
-                        <img src="assets/images/female-character.svg?v=700.0" alt="Female Character SVG" class="character-img-vector female-img">
+                        <img src="assets/images/female-character.svg?v=800.0" alt="Female Character SVG" class="character-img-vector female-img">
                     </div>
                 </div>
             </div>
@@ -284,7 +280,7 @@
                                     <div class="carousel-slide active">
                                         <div class="polaroid-slide-card">
                                             <div class="media-container">
-                                                <img src="assets/images/photo1.svg?v=700.0" alt="Memory Photo 1" class="fitted-media">
+                                                <img src="assets/images/photo1.svg?v=800.0" alt="Memory Photo 1" class="fitted-media">
                                             </div>
                                             <div class="slide-caption">✨ Nụ cười rạng rỡ nhất của em</div>
                                         </div>
@@ -294,7 +290,7 @@
                                     <div class="carousel-slide">
                                         <div class="polaroid-slide-card">
                                             <div class="media-container">
-                                                <img src="assets/images/photo2.svg?v=700.0" alt="Memory Photo 2" class="fitted-media">
+                                                <img src="assets/images/photo2.svg?v=800.0" alt="Memory Photo 2" class="fitted-media">
                                             </div>
                                             <div class="slide-caption">💕 Bình yên trong từng khoảnh khắc</div>
                                         </div>
@@ -318,7 +314,7 @@
                                     <div class="carousel-slide">
                                         <div class="polaroid-slide-card">
                                             <div class="media-container">
-                                                <img src="assets/images/photo3.svg?v=700.0" alt="Memory Photo 3" class="fitted-media">
+                                                <img src="assets/images/photo3.svg?v=800.0" alt="Memory Photo 3" class="fitted-media">
                                             </div>
                                             <div class="slide-caption">🌸 Tuổi mới rạng rỡ & hạnh phúc</div>
                                         </div>
@@ -363,10 +359,10 @@
 
     </div>
 
-    <!-- CUSTOM JAVASCRIPT MODULES (with Hard Cache-Buster v=700.0) -->
-    <script src="js/audio.js?v=700.0"></script>
-    <script src="js/timeSync.js?v=700.0"></script>
-    <script src="js/cinematic.js?v=700.0"></script>
-    <script src="js/main.js?v=700.0"></script>
+    <!-- CUSTOM JAVASCRIPT MODULES (with Hard Cache-Buster v=800.0) -->
+    <script src="js/audio.js?v=800.0"></script>
+    <script src="js/timeSync.js?v=800.0"></script>
+    <script src="js/cinematic.js?v=800.0"></script>
+    <script src="js/main.js?v=800.0"></script>
 </body>
 </html>
