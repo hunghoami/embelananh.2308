@@ -1,9 +1,9 @@
 /* ==========================================================================
-   PURE REAL-TIME PRODUCTION CONTROLLER (MINIMALIST & EXIT HANDLER v800.0)
+   PURE REAL-TIME PRODUCTION CONTROLLER (CUTE CORNER MENU & MINIMALIST v900.0)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("🔒 Production Mode: Clean Minimalist View & Exit Button Handler Enabled.");
+    console.log("🔒 Production Mode: Cute Floating Corner Menu Enabled.");
 
     // DOM Elements
     const stageCountdown = document.getElementById('stage-countdown');
@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const interactiveGiftBox = document.getElementById('interactive-gift-box');
     const btnCloseCard = document.getElementById('btn-close-card');
 
-    // Controls
-    const entryOverlay = document.getElementById('immersive-entry-overlay');
+    // Cute Floating Corner Controls
+    const cuteCornerWrapper = document.getElementById('cute-corner-wrapper');
+    const cuteToggleTrigger = document.getElementById('cute-toggle-trigger');
     const btnStartImmersive = document.getElementById('btn-start-immersive-experience');
-    const btnToggleFullscreen = document.getElementById('btn-toggle-fullscreen');
     const btnOverlayFullscreen = document.getElementById('btn-trigger-fullscreen-overlay');
     const btnExitApp = document.getElementById('btn-exit-app');
 
@@ -33,6 +33,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     // REAL BIRTHDAY TARGET TIME CONFIGURATION
     const targetBirthdayDate = "2026-08-15T00:00:00"; 
     console.log("🎯 Real Birthday Moment Locked:", targetBirthdayDate);
+
+    // ----------------------------------------------------------------------
+    // CUTE CORNER MENU TOGGLE HANDLER
+    // ----------------------------------------------------------------------
+    if (cuteToggleTrigger && cuteCornerWrapper) {
+        cuteToggleTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cuteCornerWrapper.classList.toggle('active');
+        });
+
+        // Close cute menu panel when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!cuteCornerWrapper.contains(e.target)) {
+                cuteCornerWrapper.classList.remove('active');
+            }
+        });
+    }
 
     // ----------------------------------------------------------------------
     // FULLSCREEN & LANDSCAPE LOCK HANDLER
@@ -55,13 +72,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
+        const entryOverlay = document.getElementById('immersive-entry-overlay');
         if (entryOverlay) {
             entryOverlay.classList.remove('active');
         }
     };
 
     // ----------------------------------------------------------------------
-    // EXIT FULLSCREEN HANDLER (NÚT THOÁT LUÔN HIỂN THỊ)
+    // EXIT FULLSCREEN HANDLER
     // ----------------------------------------------------------------------
     if (btnExitApp) {
         btnExitApp.addEventListener('click', (e) => {
@@ -87,13 +105,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             e.stopPropagation();
             requestFullscreenAndLandscapeLock();
             unlockAudio();
-        });
-    }
-
-    if (btnToggleFullscreen) {
-        btnToggleFullscreen.addEventListener('click', (e) => {
-            e.stopPropagation();
-            requestFullscreenAndLandscapeLock();
         });
     }
 

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MINIMALIST CLEANUP & ALWAYS-VISIBLE EXIT BUTTON STYLESHEET (v800.0)
+   CUTE FLOATING CORNER MENU & MINIMALIST STYLESHEET (v900.0)
    ========================================================================== */
 
 :root {
@@ -259,76 +259,108 @@ html, body {
 .cinematic-bars .top-bar { top: 0; }
 .cinematic-bars .bottom-bar { bottom: 0; }
 
-/* Control Buttons Header Bar */
-.header-controls {
+/* --------------------------------------------------------------------------
+   CUTE FLOATING CORNER COLLAPSIBLE MENU (THANH ẨN GÓC PHẢI CUTE)
+   -------------------------------------------------------------------------- */
+.cute-corner-wrapper {
     position: absolute;
     top: 4.5vh;
-    left: 4vw;
     right: 4vw;
-    z-index: 1000;
+    z-index: 2000;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 8px;
     pointer-events: auto;
 }
 
-.header-right-group {
+.cute-trigger-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 117, 140, 0.3), rgba(255, 215, 0, 0.3));
+    border: 1.5px solid var(--rose-pink);
+    color: #fff;
+    font-size: 1rem;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px var(--rose-glow);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.3s var(--ease-bounce), box-shadow 0.3s ease;
 }
 
-.audio-btn, .fullscreen-header-btn {
-    background: var(--glass-card);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    color: var(--champagne-gold);
-    padding: 7px 16px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: clamp(0.75rem, 1.1vw, 0.85rem);
-    font-weight: 600;
+.cute-trigger-btn:hover {
+    transform: scale(1.18) rotate(15deg);
+    box-shadow: 0 0 25px var(--rose-pink);
+}
+
+.cute-menu-panel {
     display: flex;
     align-items: center;
     gap: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 4px 8px;
+    border-radius: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
-}
-.audio-btn:hover, .fullscreen-header-btn:hover {
-    background: rgba(255, 215, 0, 0.25);
-    box-shadow: 0 0 25px var(--champagne-glow);
-    transform: scale(1.05);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(15px) scale(0.9);
+    transition: all 0.35s var(--ease-cinematic);
 }
 
-/* ALWAYS-VISIBLE COMPACT EXIT BUTTON */
-.exit-header-btn {
-    background: rgba(255, 117, 140, 0.15);
-    border: 1px solid rgba(255, 117, 140, 0.5);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    color: var(--rose-pink);
-    padding: 7px 16px;
-    border-radius: 30px;
+/* Show cute panel when wrapper is active or hovered */
+.cute-corner-wrapper:hover .cute-menu-panel,
+.cute-corner-wrapper.active .cute-menu-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+}
+
+.cute-pill-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 18px;
     cursor: pointer;
-    font-size: clamp(0.75rem, 1.1vw, 0.85rem);
+    font-size: 0.75rem;
     font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 6px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
+    gap: 4px;
+    transition: all 0.25s ease;
 }
 
-.exit-header-btn:hover {
+.audio-cute-btn {
+    color: var(--champagne-gold);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+.audio-cute-btn:hover {
+    background: rgba(255, 215, 0, 0.3);
+    transform: scale(1.08);
+}
+
+.exit-cute-btn {
+    color: var(--rose-pink);
+    border-color: rgba(255, 117, 140, 0.5);
+    padding: 4px 8px;
+}
+.exit-cute-btn:hover {
     background: var(--rose-pink);
     color: #000;
-    box-shadow: 0 0 25px var(--rose-glow);
-    transform: scale(1.06);
+    transform: scale(1.1);
 }
 
-.exit-icon {
-    font-size: 0.9rem;
+.cute-status-badge {
+    font-size: 0.68rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1px 6px;
+    border-radius: 10px;
 }
 
 /* STAGE MANAGEMENT */
