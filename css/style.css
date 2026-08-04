@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CUTE FLOATING CORNER MENU & MINIMALIST STYLESHEET (v1000.0)
+   LIVELY ANIMATED COUNTDOWN & FLOATING TEXT PARTICLES STYLESHEET (v1100.0)
    ========================================================================== */
 
 :root {
@@ -259,9 +259,7 @@ html, body {
 .cinematic-bars .top-bar { top: 0; }
 .cinematic-bars .bottom-bar { bottom: 0; }
 
-/* --------------------------------------------------------------------------
-   CUTE FLOATING CORNER COLLAPSIBLE MENU (EXPLICIT TAP TOGGLE + AUTO HIDE)
-   -------------------------------------------------------------------------- */
+/* CUTE FLOATING CORNER COLLAPSIBLE MENU */
 .cute-corner-wrapper {
     position: absolute;
     top: 4.5vh;
@@ -313,7 +311,6 @@ html, body {
     transition: all 0.35s var(--ease-cinematic);
 }
 
-/* Show cute panel ONLY when wrapper has .active class */
 .cute-corner-wrapper.active .cute-menu-panel {
     opacity: 1;
     visibility: visible;
@@ -381,9 +378,50 @@ html, body {
     z-index: 20;
 }
 
-/* PHASE 1: CLEAN MINIMALIST COUNTDOWN STAGE */
+/* --------------------------------------------------------------------------
+   LIVELY & DYNAMIC COUNTDOWN STAGE WITH FLOATING TEXT PARTICLES
+   -------------------------------------------------------------------------- */
 .countdown-layout {
     justify-content: center;
+}
+
+/* FLOATING & FALLING TEXT CONTAINER */
+.floating-words-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 15;
+    overflow: hidden;
+}
+
+.word-bubble {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 117, 140, 0.2));
+    border: 1px stroke rgba(255, 215, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff;
+    font-family: var(--font-handwriting);
+    font-size: clamp(0.85rem, 1.6vw, 1.25rem);
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px var(--rose-glow);
+    white-space: nowrap;
+    animation: floatDrift 8s infinite ease-in-out alternate;
+}
+
+/* Variations of floating position & timing */
+.word-1 { top: 12%; left: 8%; animation-delay: 0s; animation-duration: 7s; }
+.word-2 { top: 22%; right: 10%; animation-delay: 1.5s; animation-duration: 9s; }
+.word-3 { bottom: 18%; left: 12%; animation-delay: 3s; animation-duration: 8s; }
+.word-4 { bottom: 14%; right: 14%; animation-delay: 4.5s; animation-duration: 10s; }
+.word-5 { top: 15%; left: 45%; animation-delay: 2s; animation-duration: 8.5s; }
+
+@keyframes floatDrift {
+    0% { transform: translateY(0) rotate(-4deg) scale(0.96); }
+    50% { transform: translateY(-18px) rotate(4deg) scale(1.05); }
+    100% { transform: translateY(8px) rotate(-2deg) scale(0.98); }
 }
 
 .countdown-wrapper {
@@ -398,30 +436,39 @@ html, body {
 
 .main-heading {
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 4.8vw, 3.8rem);
-    background: linear-gradient(135deg, #ffffff 0%, #ffd700 45%, #ff758c 100%);
+    font-size: clamp(2.2rem, 5.2vw, 4.2rem);
+    background: linear-gradient(135deg, #ffffff 0%, #ffd700 40%, #ff758c 80%, #ffffff 100%);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+    text-shadow: 0 0 45px rgba(255, 215, 0, 0.65);
+    animation: shineTitle 4s linear infinite;
+}
+
+@keyframes shineTitle {
+    to { background-position: 200% center; }
 }
 
 .sub-heading {
-    font-size: clamp(0.9rem, 1.6vw, 1.15rem);
+    font-size: clamp(0.95rem, 1.7vw, 1.2rem);
     color: var(--text-muted);
     font-style: italic;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 
+/* 3D NEON HOLOGRAM CLOCK CARDS */
 .hologram-clock {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(8px, 1.8vw, 18px);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 215, 0, 0.05));
-    border: 2px solid rgba(255, 215, 0, 0.45);
-    padding: clamp(0.8rem, 2.2vh, 1.4rem) clamp(1.2rem, 3.5vw, 2.8rem);
-    border-radius: 30px;
-    backdrop-filter: blur(25px);
-    box-shadow: 0 25px 65px rgba(0,0,0,0.7);
+    gap: clamp(10px, 2.2vw, 22px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 215, 0, 0.06), rgba(255, 117, 140, 0.08));
+    border: 2px solid rgba(255, 215, 0, 0.55);
+    padding: clamp(0.9rem, 2.4vh, 1.6rem) clamp(1.4rem, 4vw, 3.2rem);
+    border-radius: 35px;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px var(--champagne-glow);
     position: relative;
 }
 
@@ -429,35 +476,41 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: clamp(42px, 7.5vw, 82px);
+    min-width: clamp(48px, 8.5vw, 92px);
+    position: relative;
 }
 
 .clock-unit .number {
     font-family: 'Montserrat', monospace;
-    font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+    font-size: clamp(2rem, 5vw, 4.2rem);
     font-weight: 800;
     color: #fff;
-    text-shadow: 0 0 25px var(--champagne-glow);
+    text-shadow: 0 0 30px var(--champagne-glow), 0 0 50px var(--rose-glow);
+    transition: transform 0.2s var(--ease-bounce);
 }
 
 .clock-unit .number-small {
     font-family: 'Montserrat', monospace;
-    font-size: clamp(1.1rem, 2.4vw, 2rem);
+    font-size: clamp(1.2rem, 2.8vw, 2.4rem);
     font-weight: 700;
     color: var(--rose-pink);
+    text-shadow: 0 0 20px var(--rose-pink);
 }
 
 .clock-unit .label {
-    font-size: clamp(0.65rem, 1vw, 0.8rem);
+    font-size: clamp(0.68rem, 1.1vw, 0.85rem);
     color: var(--lavender-dream);
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 4px;
 }
 
 .clock-separator {
-    font-size: clamp(1.5rem, 3.2vw, 2.8rem);
-    font-weight: 700;
+    font-size: clamp(1.6rem, 3.5vw, 3rem);
+    font-weight: 800;
     color: var(--champagne-gold);
     animation: blink 1s infinite;
+    text-shadow: 0 0 20px var(--champagne-gold);
 }
 
 @keyframes blink {
