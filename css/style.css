@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LIVELY ANIMATED COUNTDOWN & FLOATING TEXT PARTICLES STYLESHEET (v1100.0)
+   HARMONIOUS BALANCED COUNTDOWN STAGE STYLESHEET (v1300.0)
    ========================================================================== */
 
 :root {
@@ -379,7 +379,7 @@ html, body {
 }
 
 /* --------------------------------------------------------------------------
-   LIVELY & DYNAMIC COUNTDOWN STAGE WITH FLOATING TEXT PARTICLES
+   HARMONIOUS BALANCED COUNTDOWN STAGE
    -------------------------------------------------------------------------- */
 .countdown-layout {
     justify-content: center;
@@ -396,32 +396,31 @@ html, body {
 
 .word-bubble {
     position: absolute;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 117, 140, 0.2));
-    border: 1px stroke rgba(255, 215, 0, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 117, 140, 0.18));
+    border: 1px stroke rgba(255, 215, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: #ffffff;
     font-family: var(--font-handwriting);
-    font-size: clamp(0.85rem, 1.6vw, 1.25rem);
+    font-size: clamp(0.78rem, 1.4vw, 1.1rem);
     font-weight: 700;
-    padding: 6px 18px;
-    border-radius: 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px var(--rose-glow);
+    padding: 5px 15px;
+    border-radius: 26px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), 0 0 16px var(--rose-glow);
     white-space: nowrap;
     animation: floatDrift 8s infinite ease-in-out alternate;
 }
 
-/* Variations of floating position & timing */
-.word-1 { top: 12%; left: 8%; animation-delay: 0s; animation-duration: 7s; }
-.word-2 { top: 22%; right: 10%; animation-delay: 1.5s; animation-duration: 9s; }
-.word-3 { bottom: 18%; left: 12%; animation-delay: 3s; animation-duration: 8s; }
-.word-4 { bottom: 14%; right: 14%; animation-delay: 4.5s; animation-duration: 10s; }
-.word-5 { top: 15%; left: 45%; animation-delay: 2s; animation-duration: 8.5s; }
+.word-1 { top: 10%; left: 6%; animation-delay: 0s; animation-duration: 7s; }
+.word-2 { top: 16%; right: 6%; animation-delay: 1.5s; animation-duration: 9s; }
+.word-3 { bottom: 14%; left: 8%; animation-delay: 3s; animation-duration: 8s; }
+.word-4 { bottom: 12%; right: 10%; animation-delay: 4.5s; animation-duration: 10s; }
+.word-5 { top: 12%; left: 42%; animation-delay: 2s; animation-duration: 8.5s; }
 
 @keyframes floatDrift {
-    0% { transform: translateY(0) rotate(-4deg) scale(0.96); }
-    50% { transform: translateY(-18px) rotate(4deg) scale(1.05); }
-    100% { transform: translateY(8px) rotate(-2deg) scale(0.98); }
+    0% { transform: translateY(0) rotate(-3deg) scale(0.96); }
+    50% { transform: translateY(-14px) rotate(3deg) scale(1.04); }
+    100% { transform: translateY(6px) rotate(-1deg) scale(0.98); }
 }
 
 .countdown-wrapper {
@@ -430,19 +429,20 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(0.8rem, 2vh, 1.6rem);
+    gap: clamp(0.5rem, 1.4vh, 1.1rem);
     z-index: 30;
 }
 
 .main-heading {
     font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 5.2vw, 4.2rem);
+    font-size: clamp(1.6rem, 3.6vw, 2.8rem);
     background: linear-gradient(135deg, #ffffff 0%, #ffd700 40%, #ff758c 80%, #ffffff 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 45px rgba(255, 215, 0, 0.65);
+    text-shadow: 0 0 35px rgba(255, 215, 0, 0.55);
     animation: shineTitle 4s linear infinite;
+    margin-bottom: 0.1rem;
 }
 
 @keyframes shineTitle {
@@ -450,25 +450,25 @@ html, body {
 }
 
 .sub-heading {
-    font-size: clamp(0.95rem, 1.7vw, 1.2rem);
+    font-size: clamp(0.82rem, 1.35vw, 1.05rem);
     color: var(--text-muted);
     font-style: italic;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
-/* 3D NEON HOLOGRAM CLOCK CARDS */
+/* ELEGANT PROPORTIONED 3D NEON HOLOGRAM CLOCK CARDS */
 .hologram-clock {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(10px, 2.2vw, 22px);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 215, 0, 0.06), rgba(255, 117, 140, 0.08));
-    border: 2px solid rgba(255, 215, 0, 0.55);
-    padding: clamp(0.9rem, 2.4vh, 1.6rem) clamp(1.4rem, 4vw, 3.2rem);
-    border-radius: 35px;
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px var(--champagne-glow);
+    gap: clamp(8px, 1.6vw, 16px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 215, 0, 0.05), rgba(255, 117, 140, 0.06));
+    border: 1.8px solid rgba(255, 215, 0, 0.5);
+    padding: clamp(0.6rem, 1.6vh, 1rem) clamp(1rem, 2.8vw, 2.2rem);
+    border-radius: 24px;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 0 20px 55px rgba(0,0,0,0.75), 0 0 30px var(--champagne-glow);
     position: relative;
 }
 
@@ -476,41 +476,41 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: clamp(48px, 8.5vw, 92px);
+    min-width: clamp(36px, 6vw, 68px);
     position: relative;
 }
 
 .clock-unit .number {
     font-family: 'Montserrat', monospace;
-    font-size: clamp(2rem, 5vw, 4.2rem);
+    font-size: clamp(1.4rem, 3.4vw, 2.6rem);
     font-weight: 800;
     color: #fff;
-    text-shadow: 0 0 30px var(--champagne-glow), 0 0 50px var(--rose-glow);
+    text-shadow: 0 0 22px var(--champagne-glow), 0 0 35px var(--rose-glow);
     transition: transform 0.2s var(--ease-bounce);
 }
 
 .clock-unit .number-small {
     font-family: 'Montserrat', monospace;
-    font-size: clamp(1.2rem, 2.8vw, 2.4rem);
+    font-size: clamp(0.9rem, 2vw, 1.5rem);
     font-weight: 700;
     color: var(--rose-pink);
-    text-shadow: 0 0 20px var(--rose-pink);
+    text-shadow: 0 0 15px var(--rose-pink);
 }
 
 .clock-unit .label {
-    font-size: clamp(0.68rem, 1.1vw, 0.85rem);
+    font-size: clamp(0.6rem, 0.9vw, 0.75rem);
     color: var(--lavender-dream);
     font-weight: 700;
-    letter-spacing: 1px;
-    margin-top: 4px;
+    letter-spacing: 0.8px;
+    margin-top: 2px;
 }
 
 .clock-separator {
-    font-size: clamp(1.6rem, 3.5vw, 3rem);
+    font-size: clamp(1.2rem, 2.4vw, 2rem);
     font-weight: 800;
     color: var(--champagne-gold);
     animation: blink 1s infinite;
-    text-shadow: 0 0 20px var(--champagne-gold);
+    text-shadow: 0 0 16px var(--champagne-gold);
 }
 
 @keyframes blink {
