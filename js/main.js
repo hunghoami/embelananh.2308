@@ -1,9 +1,9 @@
 /* ==========================================================================
-   PURE REAL-TIME PRODUCTION CONTROLLER (STRICT TIME LOCK v500.0)
+   PURE REAL-TIME PRODUCTION CONTROLLER (AUTO FULLSCREEN & LANDSCAPE LOCK v700.0)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("🔒 Production Mode: Real-time Internet Countdown Locked.");
+    console.log("🔒 Production Mode: Real-time Countdown, Auto Fullscreen & Landscape Lock Enabled.");
 
     // DOM Elements
     const stageCountdown = document.getElementById('stage-countdown');
@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const interactiveGiftBox = document.getElementById('interactive-gift-box');
     const btnCloseCard = document.getElementById('btn-close-card');
 
+    // Immersive First-Access Controls
+    const entryOverlay = document.getElementById('immersive-entry-overlay');
+    const btnStartImmersive = document.getElementById('btn-start-immersive-experience');
+    const btnToggleFullscreen = document.getElementById('btn-toggle-fullscreen');
+    const btnOverlayFullscreen = document.getElementById('btn-trigger-fullscreen-overlay');
+
     // Multi-Media Polaroid Carousel Elements
     const carouselTrack = document.getElementById('carousel-track');
     const carouselPrev = document.getElementById('carousel-prev');
@@ -24,15 +30,64 @@ document.addEventListener('DOMContentLoaded', async () => {
     const slides = document.querySelectorAll('.carousel-slide');
     const totalSlides = slides.length;
 
-    // ----------------------------------------------------------------------
     // REAL BIRTHDAY TARGET TIME CONFIGURATION
-    // Bạn hãy chỉnh sửa ngày sinh nhật thực tế cố định tại đây:
-    // ----------------------------------------------------------------------
     const targetBirthdayDate = "2026-08-15T00:00:00"; 
     console.log("🎯 Real Birthday Moment Locked:", targetBirthdayDate);
 
-    // 1. Audio User Interaction Unlock
+    // ----------------------------------------------------------------------
+    // AUTO FULLSCREEN & LANDSCAPE LOCK HANDLER (ANDROID & WEBKIT SUPPORT)
+    // ----------------------------------------------------------------------
+    const requestFullscreenAndLandscapeLock = () => {
+        const docEl = document.documentElement;
+
+        // 1. Request Fullscreen
+        const fsPromise = docEl.requestFullscreen ? docEl.requestFullscreen() :
+                          (docEl.webkitRequestFullscreen ? docEl.webkitRequestFullscreen() : Promise.resolve());
+
+        if (fsPromise && fsPromise.then) {
+            fsPromise.then(() => {
+                // 2. Lock Screen Orientation to Landscape if supported
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(() => {});
+                }
+            }).catch(() => {});
+        } else {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(() => {});
+            }
+        }
+
+        // Hide Immersive Entry Overlay
+        if (entryOverlay) {
+            entryOverlay.classList.remove('active');
+        }
+    };
+
+    if (btnStartImmersive) {
+        btnStartImmersive.addEventListener('click', (e) => {
+            e.stopPropagation();
+            requestFullscreenAndLandscapeLock();
+            unlockAudio();
+        });
+    }
+
+    if (btnToggleFullscreen) {
+        btnToggleFullscreen.addEventListener('click', (e) => {
+            e.stopPropagation();
+            requestFullscreenAndLandscapeLock();
+        });
+    }
+
+    if (btnOverlayFullscreen) {
+        btnOverlayFullscreen.addEventListener('click', (e) => {
+            e.stopPropagation();
+            requestFullscreenAndLandscapeLock();
+        });
+    }
+
+    // 1. Audio Interaction Unlock
     const unlockAudio = () => {
+        requestFullscreenAndLandscapeLock();
         if (window.audioMgr) {
             window.audioMgr.init();
             window.audioMgr.startBackgroundMusic();
