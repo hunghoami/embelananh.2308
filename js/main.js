@@ -1,9 +1,9 @@
 /* ==========================================================================
-   PURE REAL-TIME PRODUCTION CONTROLLER (TAP TOGGLE & 8S AUTO-HIDE v1000.0)
+   PURE REAL-TIME PRODUCTION CONTROLLER (TARGET: 00h 23.08.2026 v1200.0)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("🔒 Production Mode: Tap Toggle & Auto-Hide Cute Corner Menu Enabled.");
+    console.log("🔒 Production Mode: Target Time Locked to 00h 23.08.2026.");
 
     // DOM Elements
     const stageCountdown = document.getElementById('stage-countdown');
@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const slides = document.querySelectorAll('.carousel-slide');
     const totalSlides = slides.length;
 
-    // REAL BIRTHDAY TARGET TIME CONFIGURATION
-    const targetBirthdayDate = "2026-08-15T00:00:00"; 
+    // REAL BIRTHDAY TARGET TIME CONFIGURATION: 00h ngày 23/08/2026
+    const targetBirthdayDate = "2026-08-23T00:00:00"; 
     console.log("🎯 Real Birthday Moment Locked:", targetBirthdayDate);
 
     // ----------------------------------------------------------------------
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         autoHideMenuTimer = setTimeout(() => {
             if (cuteCornerWrapper) {
                 cuteCornerWrapper.classList.remove('active');
-                console.log("⏳ Cute Corner Menu auto-hidden after 8s.");
             }
         }, 8000);
     };
@@ -63,7 +62,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Close cute menu panel when clicking anywhere outside
         document.addEventListener('click', (e) => {
             if (cuteCornerWrapper && !cuteCornerWrapper.contains(e.target)) {
                 cuteCornerWrapper.classList.remove('active');
