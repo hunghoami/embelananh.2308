@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ULTRA-DETAILED GSAP CINEMATIC ANIMATION ENGINE (v300.0)
+   ULTRA-DETAILED GSAP CINEMATIC ANIMATION ENGINE (AUTO SLIDESHOW v2800.0)
    ========================================================================== */
 
 class CinematicOrchestrator {
@@ -8,10 +8,14 @@ class CinematicOrchestrator {
         this.ctx = this.bgCanvas ? this.bgCanvas.getContext('2d') : null;
         this.particles = [];
         this.shootingStars = [];
+        this.flowerPetals = [];
         this.isCandleBlown = false;
+        this.isTransitioning = false;
 
         this.initGalaxyBackground();
+        this.initFallingPetals();
         this.initMouseParallax();
+        this.initAmbientFireworks();
     }
 
     // Dynamic Mouse Parallax Tilt Effect
@@ -20,21 +24,45 @@ class CinematicOrchestrator {
         if (!appViewport) return;
 
         window.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.018;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.018;
+            if (this.isTransitioning) return;
+
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.012;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.012;
 
             if (typeof gsap !== 'undefined') {
                 gsap.to('.party-scene-container, .cinematic-garden-container', {
                     x: moveX,
                     y: moveY,
                     duration: 1.2,
+                    overwrite: 'auto',
                     ease: "power2.out"
                 });
             }
         });
     }
 
-    // Galaxy Background & Shooting Stars
+    // Continuous Falling Flower Petals System
+    initFallingPetals() {
+        const petalColors = ['#ff758c', '#ff8fa3', '#ffb5a7', '#ffd1dc', '#ffd700'];
+        const count = Math.min(Math.floor(window.innerWidth / 30), 40);
+
+        for (let i = 0; i < count; i++) {
+            this.flowerPetals.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                size: Math.random() * 10 + 6,
+                color: petalColors[Math.floor(Math.random() * petalColors.length)],
+                alpha: Math.random() * 0.65 + 0.35,
+                speedY: Math.random() * 1.2 + 0.6,
+                speedX: Math.random() * 0.8 - 0.4,
+                rotation: Math.random() * 360,
+                rotSpeed: Math.random() * 2 - 1,
+                oscillation: Math.random() * 0.05 + 0.02
+            });
+        }
+    }
+
+    // Galaxy Background, Floating Sparkles & Falling Flower Petals Canvas Loop
     initGalaxyBackground() {
         if (!this.bgCanvas || !this.ctx) return;
 
@@ -77,6 +105,7 @@ class CinematicOrchestrator {
         const render = () => {
             this.ctx.clearRect(0, 0, this.bgCanvas.width, this.bgCanvas.height);
 
+            // 1. Render Floating Magic Particles
             this.particles.forEach(p => {
                 p.y += p.speedY;
                 p.x += p.speedX;
@@ -97,6 +126,36 @@ class CinematicOrchestrator {
                 this.ctx.restore();
             });
 
+            // 2. Render Falling Flower Petals
+            this.flowerPetals.forEach(petal => {
+                petal.y += petal.speedY;
+                petal.x += petal.speedX + Math.sin(Date.now() * 0.002 + petal.y * 0.01) * 0.4;
+                petal.rotation += petal.rotSpeed;
+
+                if (petal.y > this.bgCanvas.height + 20) {
+                    petal.y = -20;
+                    petal.x = Math.random() * this.bgCanvas.width;
+                }
+
+                this.ctx.save();
+                this.ctx.translate(petal.x, petal.y);
+                this.ctx.rotate((petal.rotation * Math.PI) / 180);
+                this.ctx.globalAlpha = petal.alpha;
+                this.ctx.fillStyle = petal.color;
+                this.ctx.shadowBlur = 10;
+                this.ctx.shadowColor = petal.color;
+
+                // Draw Organic Rose / Sakura Petal Path
+                this.ctx.beginPath();
+                this.ctx.moveTo(0, -petal.size);
+                this.ctx.bezierCurveTo(petal.size / 2, -petal.size / 2, petal.size, petal.size / 3, 0, petal.size);
+                this.ctx.bezierCurveTo(-petal.size, petal.size / 3, -petal.size / 2, -petal.size / 2, 0, -petal.size);
+                this.ctx.fill();
+
+                this.ctx.restore();
+            });
+
+            // 3. Render Shooting Stars
             for (let i = this.shootingStars.length - 1; i >= 0; i--) {
                 const star = this.shootingStars[i];
                 star.x += Math.cos(star.angle) * star.speed;
@@ -137,7 +196,35 @@ class CinematicOrchestrator {
         render();
     }
 
-    // Candle Blowing Interaction
+    // Ambient Fireworks Burst Loop
+    initAmbientFireworks() {
+        const triggerBurst = () => {
+            const stageParty = document.getElementById('stage-party');
+            const stageGift = document.getElementById('stage-gift');
+
+            const isPartyActive = stageParty && stageParty.classList.contains('active');
+            const isGiftActive = stageGift && stageGift.classList.contains('active');
+
+            if ((isPartyActive || isGiftActive) && typeof confetti === 'function') {
+                confetti({
+                    particleCount: Math.floor(Math.random() * 25 + 15),
+                    startVelocity: 35,
+                    spread: 80,
+                    origin: {
+                        x: Math.random() * 0.8 + 0.1,
+                        y: Math.random() * 0.4 + 0.2
+                    },
+                    colors: ['#ffd700', '#ff758c', '#ffffff', '#e0c3fc', '#00e5ff'],
+                    disableForReducedMotion: true
+                });
+            }
+            setTimeout(triggerBurst, Math.random() * 4500 + 3500);
+        };
+
+        setTimeout(triggerBurst, 2500);
+    }
+
+    // Candle Blowing Interaction & Automatic Unfold Love Letter Modal
     blowCandlesOut() {
         if (this.isCandleBlown) return;
         this.isCandleBlown = true;
@@ -157,6 +244,7 @@ class CinematicOrchestrator {
                 scale: 0,
                 opacity: 0,
                 duration: 0.6,
+                overwrite: 'auto',
                 ease: "power2.out"
             });
         } else if (flamesGroup) {
@@ -164,42 +252,39 @@ class CinematicOrchestrator {
         }
 
         if (candleHint) {
-            candleHint.innerHTML = "✨ Điều ước của em chắc chắn sẽ thành hiện thực! ✨";
+            candleHint.innerHTML = "✨ Ước nguyện tuổi mới đã được trao gửi! Đang mở bức thư yêu thương... 💕";
             candleHint.style.background = "linear-gradient(135deg, #00ff88, #ffd700)";
             candleHint.style.color = "#000";
         }
 
         if (typeof confetti === 'function') {
             confetti({
-                particleCount: 85,
-                spread: 110,
-                origin: { y: 0.65 },
+                particleCount: 100,
+                spread: 130,
+                origin: { y: 0.6 },
                 colors: ['#ffd700', '#ff758c', '#ffffff']
             });
         }
+
+        // Unfold Love Letter Modal after 1.4 seconds of candle blow
+        setTimeout(() => {
+            this.openHandwrittenCard();
+        }, 1400);
     }
 
-    // ----------------------------------------------------------------------
-    // HIGH-DENSITY FIREWORKS EXPLOSION & SCREEN FLASH
-    // ----------------------------------------------------------------------
+    // High-Density Fireworks Explosion & Screen Flash
     launchFireworksExplosion() {
         console.log("🎆 Launching High-Density Fireworks & Screen Flash!");
 
         if (typeof gsap !== 'undefined') {
-            // Golden Screen Flash Effect
             gsap.fromTo('.app-viewport', 
                 { filter: 'brightness(1.8)' }, 
-                { filter: 'brightness(1)', duration: 0.9, ease: "power2.out" }
+                { filter: 'brightness(1)', duration: 0.9, ease: "power2.out", overwrite: 'auto' }
             );
 
             gsap.fromTo('.wishes-neon-text .glow-word', 
                 { scale: 0, opacity: 0, y: -30 }, 
-                { scale: 1, opacity: 1, y: 0, duration: 1.2, stagger: 0.25, ease: "back.out(2)" }
-            );
-
-            gsap.fromTo('.table-setup', 
-                { y: 80, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 1.4, ease: "power3.out", delay: 0.4 }
+                { scale: 1, opacity: 1, y: 0, duration: 1.2, stagger: 0.25, ease: "back.out(2)", overwrite: 'auto' }
             );
         }
 
@@ -239,50 +324,55 @@ class CinematicOrchestrator {
         }, 280);
     }
 
-    // GSAP Camera Transition
+    // GSAP Camera Transition to Garden Stage
     transitionToGardenStage() {
         console.log("🎬 Initiating GSAP Camera Transition...");
+        this.isTransitioning = true;
 
         const stageParty = document.getElementById('stage-party');
         const stageGift = document.getElementById('stage-gift');
         const partyLayer = document.getElementById('party-stage-layer');
 
         if (typeof gsap === 'undefined') {
-            stageParty.classList.remove('active');
-            stageGift.classList.add('active');
+            if (stageParty) stageParty.classList.remove('active');
+            if (stageGift) stageGift.classList.add('active');
+            this.isTransitioning = false;
             return;
         }
 
-        const tl = gsap.timeline();
+        gsap.killTweensOf([partyLayer, stageParty, stageGift]);
+
+        const tl = gsap.timeline({
+            onComplete: () => {
+                this.isTransitioning = false;
+            }
+        });
 
         tl.to(partyLayer, {
-            scale: 1.35,
-            rotationX: 8,
-            duration: 2.2,
+            scale: 1.25,
+            duration: 1.8,
             ease: "power2.inOut"
         })
         .to(stageParty, {
             opacity: 0,
-            duration: 1,
+            duration: 0.8,
             ease: "power1.out",
             onComplete: () => {
-                stageParty.classList.remove('active');
-                stageGift.classList.add('active');
+                if (stageParty) stageParty.classList.remove('active');
+                if (stageGift) stageGift.classList.add('active');
             }
         })
         .fromTo(stageGift, 
-            { opacity: 0, scale: 0.92 }, 
-            { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" }
+            { opacity: 0, scale: 0.94 }, 
+            { opacity: 1, scale: 1, duration: 1.0, ease: "power2.out" }
         )
         .fromTo('.gift-box-interactive', 
-            { y: 80, opacity: 0, scale: 0.4 }, 
-            { y: 0, opacity: 1, scale: 1, duration: 1.4, ease: "elastic.out(1, 0.5)" }, "-=0.8"
+            { y: 60, opacity: 0, scale: 0.5 }, 
+            { y: 0, opacity: 1, scale: 1, duration: 1.2, ease: "elastic.out(1, 0.5)" }, "-=0.6"
         );
     }
 
-    // ----------------------------------------------------------------------
     // DETAILED GIFT BOX EXPLOSION & 3D UNTIMED ENVELOPE OPENING
-    // ----------------------------------------------------------------------
     openHandwrittenCard() {
         const cardModal = document.getElementById('card-modal');
         const cardContainer = document.querySelector('.card-container');
@@ -290,13 +380,13 @@ class CinematicOrchestrator {
         
         if (!cardModal) return;
 
-        // Trigger Gift Box Bounce Pulse Effect
         if (giftBox && typeof gsap !== 'undefined') {
             gsap.to(giftBox, {
-                scale: 1.3,
+                scale: 1.25,
                 duration: 0.25,
                 yoyo: true,
                 repeat: 1,
+                overwrite: 'auto',
                 ease: "power2.out"
             });
         }
@@ -309,30 +399,49 @@ class CinematicOrchestrator {
         cardModal.classList.add('active');
 
         if (typeof gsap !== 'undefined') {
-            const tl = gsap.timeline();
+            gsap.killTweensOf([cardContainer, '.modal-couple-bottom-right', '.salutation', '.letter-paragraph', '.signature-section']);
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    if (window.startCarouselAutoPlay) {
+                        window.startCarouselAutoPlay();
+                    }
+                }
+            });
 
             tl.fromTo(cardContainer, 
-                { scale: 0.08, rotateX: 75, rotateY: -35, opacity: 0, y: 180 }, 
-                { scale: 1, rotateX: 0, rotateY: 0, opacity: 1, y: 0, duration: 1.1, ease: "back.out(1.4)" }
+                { scale: 0.1, rotateX: 60, opacity: 0, y: 150 }, 
+                { scale: 1, rotateX: 0, opacity: 1, y: 0, duration: 0.9, ease: "back.out(1.3)" }
+            )
+            .fromTo('.modal-couple-bottom-right', 
+                { scale: 0, opacity: 0, x: 50, y: 50 }, 
+                { scale: 1, opacity: 1, x: 0, y: 0, duration: 0.8, ease: "back.out(1.5)" }, "-=0.5"
             )
             .fromTo('.wax-seal-header', 
-                { scale: 2, opacity: 0 }, 
-                { scale: 1, opacity: 1, duration: 0.5, ease: "bounce.out" }, "-=0.4"
+                { scale: 1.8, opacity: 0 }, 
+                { scale: 1, opacity: 1, duration: 0.45, ease: "bounce.out" }, "-=0.3"
             )
             .fromTo('.card-header h2, .handwriting-sub', 
-                { y: 20, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: "power2.out" }, "-=0.3"
+                { y: 15, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.5, stagger: 0.12, ease: "power2.out" }, "-=0.2"
+            )
+            .fromTo('.salutation', 
+                { x: -30, opacity: 0, scale: 0.85 }, 
+                { x: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.8)" }, "-=0.2"
             )
             .fromTo('.letter-paragraph, .signature-section', 
-                { y: 25, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 0.7, stagger: 0.15, ease: "power2.out" }, "-=0.4"
+                { y: 20, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: "power2.out" }, "-=0.3"
             );
+        } else {
+            if (window.startCarouselAutoPlay) {
+                window.startCarouselAutoPlay();
+            }
         }
 
         if (typeof confetti === 'function') {
             confetti({
-                particleCount: 95,
-                spread: 120,
+                particleCount: 110,
+                spread: 140,
                 origin: { y: 0.58 },
                 colors: ['#ffd700', '#ff758c', '#ffffff', '#e0c3fc']
             });
@@ -343,15 +452,20 @@ class CinematicOrchestrator {
         const cardModal = document.getElementById('card-modal');
         if (!cardModal) return;
 
+        if (window.stopCarouselAutoPlay) {
+            window.stopCarouselAutoPlay();
+        }
+
         const cardContainer = document.querySelector('.card-container');
 
         if (typeof gsap !== 'undefined') {
             gsap.to(cardContainer, {
                 scale: 0.2,
-                rotateX: -45,
+                rotateX: -40,
                 opacity: 0,
-                y: 120,
-                duration: 0.45,
+                y: 100,
+                duration: 0.4,
+                overwrite: 'auto',
                 ease: "power3.in",
                 onComplete: () => {
                     cardModal.classList.remove('active');

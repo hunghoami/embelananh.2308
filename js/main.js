@@ -1,9 +1,9 @@
 /* ==========================================================================
-   PURE REAL-TIME PRODUCTION CONTROLLER (TARGET: 00h 23.08.2026 v1200.0)
+   PURE REAL-TIME PRODUCTION CONTROLLER (AUTO SLIDESHOW CAROUSEL v2800.0)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("🔒 Production Mode: Target Time Locked to 00h 23.08.2026.");
+    console.log("🔒 Production Mode: Running Bulletproof Time Sync & Auto Carousel Engine.");
 
     // DOM Elements
     const stageCountdown = document.getElementById('stage-countdown');
@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
     const totalSlides = slides.length;
+    let autoPlayTimer = null;
+    let activeVideoHandler = null;
 
     // REAL BIRTHDAY TARGET TIME CONFIGURATION: 00h ngày 23/08/2026
     const targetBirthdayDate = "2026-08-23T00:00:00"; 
@@ -196,9 +198,52 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // MULTI-MEDIA CAROUSEL SLIDER CONTROLLER
-    const updateCarousel = (index) => {
+    // ----------------------------------------------------------------------
+    // INTELLIGENT AUTO-PLAY MULTI-MEDIA CAROUSEL SLIDER ENGINE
+    // ----------------------------------------------------------------------
+    const startAutoPlayForCurrentSlide = () => {
+        if (autoPlayTimer) {
+            clearTimeout(autoPlayTimer);
+            autoPlayTimer = null;
+        }
+
+        slides.forEach((slide) => {
+            const vid = slide.querySelector('video');
+            if (vid && activeVideoHandler) {
+                vid.removeEventListener('ended', activeVideoHandler);
+            }
+        });
+        activeVideoHandler = null;
+
+        const cardModal = document.getElementById('card-modal');
+        if (!cardModal || !cardModal.classList.contains('active')) return;
+
+        const currentSlideEl = slides[currentSlide];
+        if (!currentSlideEl) return;
+
+        const video = currentSlideEl.querySelector('video');
+
+        if (video) {
+            console.log(`🎬 Slide ${currentSlide + 1}: Playing Video. Waiting for video to finish...`);
+            video.currentTime = 0;
+            video.play().catch(() => {});
+
+            activeVideoHandler = () => {
+                console.log(`🎬 Video Ended! Advancing to Slide ${currentSlide + 2}...`);
+                updateCarousel(currentSlide + 1);
+            };
+            video.addEventListener('ended', activeVideoHandler, { once: true });
+        } else {
+            console.log(`📸 Slide ${currentSlide + 1}: Displaying Photo. Auto-advancing in 3.5s...`);
+            autoPlayTimer = setTimeout(() => {
+                updateCarousel(currentSlide + 1);
+            }, 3500);
+        }
+    };
+
+    const updateCarousel = (index, isUserAction = false) => {
         currentSlide = (index + totalSlides) % totalSlides;
+
         if (carouselTrack) {
             carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
@@ -211,37 +256,60 @@ document.addEventListener('DOMContentLoaded', async () => {
         slides.forEach((slide, idx) => {
             const video = slide.querySelector('video');
             if (video) {
-                if (idx === currentSlide) {
-                    video.currentTime = 0;
-                    video.play().catch(() => {});
-                } else {
+                if (idx !== currentSlide) {
                     video.pause();
                 }
             }
         });
 
-        if (window.audioMgr) window.audioMgr.playCardUnfold();
+        if (isUserAction && window.audioMgr) {
+            window.audioMgr.playCardUnfold();
+        }
+
+        startAutoPlayForCurrentSlide();
     };
 
     if (carouselPrev) {
-        carouselPrev.addEventListener('click', () => updateCarousel(currentSlide - 1));
+        carouselPrev.addEventListener('click', () => updateCarousel(currentSlide - 1, true));
     }
     if (carouselNext) {
-        carouselNext.addEventListener('click', () => updateCarousel(currentSlide + 1));
+        carouselNext.addEventListener('click', () => updateCarousel(currentSlide + 1, true));
     }
     
     if (dotsContainer) {
         const dots = dotsContainer.querySelectorAll('.dot');
         dots.forEach((dot, idx) => {
-            dot.addEventListener('click', () => updateCarousel(idx));
+            dot.addEventListener('click', () => updateCarousel(idx, true));
         });
     }
 
+    // Export Global Carousel Controls for Cinematic Orchestrator
+    window.startCarouselAutoPlay = () => {
+        updateCarousel(currentSlide, false);
+    };
+
+    window.stopCarouselAutoPlay = () => {
+        if (autoPlayTimer) {
+            clearTimeout(autoPlayTimer);
+            autoPlayTimer = null;
+        }
+        slides.forEach((slide) => {
+            const vid = slide.querySelector('video');
+            if (vid) {
+                vid.pause();
+                if (activeVideoHandler) vid.removeEventListener('ended', activeVideoHandler);
+            }
+        });
+    };
+
     // REAL BIRTHDAY SCENE TRIGGER AT 00:00:00
     function triggerBirthdaySequence() {
-        console.log("🎉 MIDNIGHT MOMENT ARRIVED! Starting Real Birthday Sequence...");
+        console.log("🎉 MIDNIGHT MOMENT ARRIVED! Starting Romantic Restaurant Birthday Sequence...");
 
         unlockAudio();
+
+        const entryOverlay = document.getElementById('immersive-entry-overlay');
+        if (entryOverlay) entryOverlay.classList.remove('active');
 
         if (stageCountdown) stageCountdown.classList.remove('active');
         if (stageParty) stageParty.classList.add('active');

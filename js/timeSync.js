@@ -1,10 +1,10 @@
 /* ==========================================================================
-   REAL-TIME TIME SYNCHRONIZATION MODULE (WORLDTIMEAPI + RAF LOOP)
+   BULLETPROOF HIGH-PRECISION TIME SYNCHRONIZATION MODULE (v1800.0)
    ========================================================================== */
 
 class TimeSyncManager {
     constructor() {
-        this.timeOffsetMs = 0; // Offset = Internet Time - Local performance.now()
+        this.timeOffsetMs = 0; // Delta = Internet Time - System Date.now()
         this.isSynced = false;
         this.targetTimeMs = 0;
         this.rafId = null;
@@ -20,66 +20,82 @@ class TimeSyncManager {
         this.elSyncStatus = document.getElementById('sync-status');
     }
 
-    // Synchronize clock with WorldTimeAPI (with fallback)
+    // Synchronize clock with WorldTimeAPI (Asia/Ho_Chi_Minh)
     async fetchInternetTime() {
         const startTime = performance.now();
         
         try {
-            this.updateStatus("Đang gọi API worldtimeapi.org...", "syncing");
+            this.updateStatus("Đang đồng bộ giờ hệ thống...", "syncing");
             
-            // Primary API: worldtimeapi.org
-            const response = await fetch('https://worldtimeapi.org/api/ip', { cache: 'no-store' });
+            // Primary API: worldtimeapi.org Asia/Ho_Chi_Minh
+            const response = await fetch('https://worldtimeapi.org/api/timezone/Asia/Ho_Chi_Minh', { cache: 'no-store' });
             if (!response.ok) throw new Error('WorldTimeAPI primary failed');
             
             const data = await response.json();
-            const serverUnixMs = new Date(data.datetime).getTime();
+            const serverUnixMs = data.unixtime * 1000;
             const roundTripLatency = (performance.now() - startTime) / 2;
+            const nowDeviceMs = Date.now();
+
+            // Measure offset between server epoch and local device epoch
+            const deltaMs = (serverUnixMs + roundTripLatency) - nowDeviceMs;
             
-            // Calculate accurate reference offset
-            this.timeOffsetMs = (serverUnixMs + roundTripLatency) - performance.now();
-            this.isSynced = true;
-            
-            this.updateStatus(`Đã đồng bộ giờ chuẩn Internet (Độ trễ: ${Math.round(roundTripLatency)}ms)`, "success");
-            console.log("⏱️ Time synced via WorldTimeAPI. Offset:", this.timeOffsetMs);
+            // If delta is reasonable (< 3 minutes), use delta to fine-tune local clock
+            if (Math.abs(deltaMs) < 180000) {
+                this.timeOffsetMs = deltaMs;
+                this.isSynced = true;
+                this.updateStatus(`Đã đồng bộ giờ chuẩn Internet (Sai lệch: ${Math.round(deltaMs)}ms)`, "success");
+            } else {
+                // If delta is too large, rely on device system clock
+                this.timeOffsetMs = 0;
+                this.isSynced = true;
+                this.updateStatus("Đã đồng bộ theo giờ hệ thống thiết bị", "success");
+            }
+            console.log("⏱️ Time synced. Server Unix:", serverUnixMs, "Local Unix:", nowDeviceMs, "Delta:", this.timeOffsetMs);
 
         } catch (err) {
-            console.warn("Primary WorldTimeAPI failed, attempting fallback...", err);
-            
-            // Secondary Fallback API: timeapi.io
-            try {
-                const fbResponse = await fetch('https://timeapi.io/api/Time/current/zone?timeZone=Asia/Ho_Chi_Minh', { cache: 'no-store' });
-                if (!fbResponse.ok) throw new Error('Fallback TimeAPI failed');
-                
-                const fbData = await fbResponse.json();
-                const serverUnixMs = new Date(fbData.dateTime).getTime();
-                const roundTripLatency = (performance.now() - startTime) / 2;
-                
-                this.timeOffsetMs = (serverUnixMs + roundTripLatency) - performance.now();
-                this.isSynced = true;
-                
-                this.updateStatus("Đã đồng bộ giờ chuẩn Internet (Máy chủ dự phòng)", "success");
-                console.log("⏱️ Time synced via TimeAPI fallback.");
-            } catch (fallbackErr) {
-                console.warn("All internet time APIs unavailable. Falling back to device clock.", fallbackErr);
-                this.timeOffsetMs = Date.now() - performance.now();
-                this.isSynced = false;
-                this.updateStatus("Sử dụng giờ hệ thống (Offline)", "warning");
-            }
+            console.warn("Time sync API unavailable, using high-precision local device clock.", err);
+            this.timeOffsetMs = 0;
+            this.isSynced = false;
+            this.updateStatus("Sử dụng giờ hệ thống thiết bị", "warning");
         }
     }
 
-    // Set Target Birthday Moment
+    // Set Target Birthday Moment cleanly
     setTargetTime(targetDate) {
+        if (typeof targetDate === 'string') {
+            // Parse YYYY-MM-DDTHH:mm:ss string cleanly in local time
+            const cleanStr = targetDate.replace('+07:00', '').replace('Z', '');
+            const parts = cleanStr.split('T');
+            if (parts.length === 2) {
+                const dateParts = parts[0].split('-');
+                const timeParts = parts[1].split(':');
+                if (dateParts.length === 3 && timeParts.length >= 2) {
+                    const year = parseInt(dateParts[0], 10);
+                    const month = parseInt(dateParts[1], 10) - 1;
+                    const day = parseInt(dateParts[2], 10);
+                    const hour = parseInt(timeParts[0], 10);
+                    const minute = parseInt(timeParts[1], 10);
+                    const second = timeParts.length > 2 ? parseInt(timeParts[2], 10) : 0;
+                    
+                    // Create local date object
+                    const localTarget = new Date(year, month, day, hour, minute, second);
+                    this.targetTimeMs = localTarget.getTime();
+                    console.log("🎯 Target Parsed Local:", localTarget.toString(), "Epoch Ms:", this.targetTimeMs);
+                    return;
+                }
+            }
+        }
+
         this.targetTimeMs = new Date(targetDate).getTime();
         this.hasTriggeredComplete = false;
     }
 
     // Calculate Current Real-time Unix Timestamp
     getNowUnixMs() {
-        return performance.now() + this.timeOffsetMs;
+        return Date.now() + this.timeOffsetMs;
     }
 
-    // Start High-Precision requestAnimationFrame Loop (Smooth for 120Hz Displays)
+    // Start High-Precision requestAnimationFrame Loop
     startCountdown(onComplete) {
         this.onCompleteCallback = onComplete;
         
