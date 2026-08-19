@@ -32,16 +32,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     let autoPlayTimer = null;
     let activeVideoHandler = null;
 
-    // TEST MODE RUN: Dynamic 15 seconds countdown from current moment
-    const testNow = new Date(Date.now() + 15000);
-    const testYear = testNow.getFullYear();
-    const testMonth = String(testNow.getMonth() + 1).padStart(2, '0');
-    const testDay = String(testNow.getDate()).padStart(2, '0');
-    const testHours = String(testNow.getHours()).padStart(2, '0');
-    const testMinutes = String(testNow.getMinutes()).padStart(2, '0');
-    const testSeconds = String(testNow.getSeconds()).padStart(2, '0');
-    const targetBirthdayDate = `${testYear}-${testMonth}-${testDay}T${testHours}:${testMinutes}:${testSeconds}`; 
-    console.log("🧪 Test Mode Activated: 15-second Countdown Target:", targetBirthdayDate);
+    // PRODUCTION MODE: Exact Birthday Target Date 00:00:00 August 23, 2026
+    const targetBirthdayDate = "2026-08-23T00:00:00";
+    console.log("🎉 Production Mode Activated: Target Birthday Date:", targetBirthdayDate);
 
     // ----------------------------------------------------------------------
     // CUTE CORNER MENU TAP TOGGLE & 8-SECOND AUTO-HIDE HANDLER
