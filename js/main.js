@@ -80,16 +80,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // ----------------------------------------------------------------------
-    // FULLSCREEN & LANDSCAPE LOCK HANDLER (SAFE VIEWPORT WITHOUT BROWSER TOAST)
+    // FULLSCREEN & LANDSCAPE ORIENTATION LOCK HANDLER
     // ----------------------------------------------------------------------
     const requestFullscreenAndLandscapeLock = () => {
-        if (screen.orientation && screen.orientation.lock) {
-            screen.orientation.lock('landscape').catch(() => {});
+        const docEl = document.documentElement;
+
+        const fsPromise = docEl.requestFullscreen ? docEl.requestFullscreen() :
+                          (docEl.webkitRequestFullscreen ? docEl.webkitRequestFullscreen() : Promise.resolve());
+
+        if (fsPromise && fsPromise.then) {
+            fsPromise.then(() => {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(() => {});
+                }
+            }).catch(() => {});
+        } else {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(() => {});
+            }
         }
 
         const entryOverlay = document.getElementById('immersive-entry-overlay');
         if (entryOverlay) {
             entryOverlay.classList.remove('active');
+        }
+
+        const portraitOverlay = document.getElementById('portrait-warning');
+        if (portraitOverlay) {
+            portraitOverlay.classList.add('dismissed');
+            portraitOverlay.style.setProperty('display', 'none', 'important');
         }
     };
 
@@ -100,6 +119,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         btnExitApp.addEventListener('click', (e) => {
             e.stopPropagation();
             console.log("🚪 Exit Button Tapped.");
+
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
 
             if (window.audioMgr) {
                 window.audioMgr.stopBackgroundMusic();

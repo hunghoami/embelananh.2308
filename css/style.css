@@ -159,8 +159,11 @@ html, body {
 }
 
 @media (orientation: portrait) and (max-width: 1024px) {
-    .portrait-warning-overlay { display: flex !important; }
-    .app-viewport { display: none !important; }
+    .portrait-warning-overlay { display: flex; }
+}
+
+.portrait-warning-overlay.dismissed {
+    display: none !important;
 }
 
 .rotate-device-content {
