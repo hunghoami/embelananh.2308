@@ -622,10 +622,16 @@ html, body {
     margin-bottom: 5px;
 }
 
-.dining-male-img {
+.dining-male-img,
+.dining-female-img {
     width: 100%;
     height: auto;
-    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.65));
+    max-height: clamp(90px, 16vh, 150px);
+    object-fit: cover;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px var(--rose-glow);
+    filter: contrast(1.03) brightness(1.02);
 }
 
 .table-center-cake-area {
