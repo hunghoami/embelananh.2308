@@ -1,5 +1,5 @@
 /* ==========================================================================
-   REALISTIC SPARKLER AUDIO & SYNCHRONIZED SOUND EFFECTS ENGINE (v11.0)
+   UPBEAT REALISTIC SPARKLER AUDIO & SYNCHRONIZED SOUND EFFECTS ENGINE (v12.0)
    ========================================================================== */
 
 class AudioManager {
@@ -16,7 +16,7 @@ class AudioManager {
             const AudioCtx = window.AudioContext || window.webkitAudioContext;
             this.ctx = new AudioCtx();
             this.isInitialized = true;
-            console.log("🔊 Realistic Sparkler Audio Engine Initialized");
+            console.log("🔊 Upbeat Rhythmic Birthday Audio Engine Initialized");
         } catch (e) {
             console.warn("AudioContext init error", e);
         }
@@ -33,7 +33,7 @@ class AudioManager {
     }
 
     // ----------------------------------------------------------------------
-    // 1. HAPPY BIRTHDAY BACKGROUND MUSIC (CELESTIAL MUSIC BOX)
+    // 1. HAPPY BIRTHDAY BACKGROUND MUSIC (UPBEAT RHYTHMIC MUSIC BOX & MARIMBA)
     // ----------------------------------------------------------------------
     startBackgroundMusic() {
         if (this.isMuted) return;
@@ -45,35 +45,36 @@ class AudioManager {
 
         if (this.bgMusicTimer) return;
 
+        // Upbeat, lively & rhythmic tempo timings (~1.7x faster)
         const melody = [
-            { notes: [261.63, 130.81], dur: 400 },
-            { notes: [261.63], dur: 400 },
-            { notes: [293.66, 146.83], dur: 800 },
-            { notes: [261.63], dur: 800 },
-            { notes: [349.23, 174.61], dur: 800 },
-            { notes: [329.63, 164.81], dur: 1200 },
+            { notes: [261.63, 130.81], dur: 220 },
+            { notes: [261.63], dur: 220 },
+            { notes: [293.66, 146.83], dur: 440 },
+            { notes: [261.63], dur: 440 },
+            { notes: [349.23, 174.61], dur: 440 },
+            { notes: [329.63, 164.81], dur: 660 },
 
-            { notes: [261.63, 130.81], dur: 400 },
-            { notes: [261.63], dur: 400 },
-            { notes: [293.66, 146.83], dur: 800 },
-            { notes: [261.63], dur: 800 },
-            { notes: [392.00, 196.00], dur: 800 },
-            { notes: [349.23, 174.61], dur: 1200 },
+            { notes: [261.63, 130.81], dur: 220 },
+            { notes: [261.63], dur: 220 },
+            { notes: [293.66, 146.83], dur: 440 },
+            { notes: [261.63], dur: 440 },
+            { notes: [392.00, 196.00], dur: 440 },
+            { notes: [349.23, 174.61], dur: 660 },
 
-            { notes: [261.63, 130.81], dur: 400 },
-            { notes: [261.63], dur: 400 },
-            { notes: [523.25, 261.63], dur: 800 },
-            { notes: [440.00, 220.00], dur: 800 },
-            { notes: [349.23, 174.61], dur: 800 },
-            { notes: [329.63, 164.81], dur: 800 },
-            { notes: [293.66, 146.83], dur: 1000 },
+            { notes: [261.63, 130.81], dur: 220 },
+            { notes: [261.63], dur: 220 },
+            { notes: [523.25, 261.63], dur: 440 },
+            { notes: [440.00, 220.00], dur: 440 },
+            { notes: [349.23, 174.61], dur: 440 },
+            { notes: [329.63, 164.81], dur: 440 },
+            { notes: [293.66, 146.83], dur: 550 },
 
-            { notes: [466.16, 233.08], dur: 400 },
-            { notes: [466.16], dur: 400 },
-            { notes: [440.00, 220.00], dur: 800 },
-            { notes: [349.23, 174.61], dur: 800 },
-            { notes: [392.00, 196.00], dur: 800 },
-            { notes: [349.23, 174.61], dur: 1600 }
+            { notes: [466.16, 233.08], dur: 220 },
+            { notes: [466.16], dur: 220 },
+            { notes: [440.00, 220.00], dur: 440 },
+            { notes: [349.23, 174.61], dur: 440 },
+            { notes: [392.00, 196.00], dur: 440 },
+            { notes: [349.23, 174.61], dur: 880 }
         ];
 
         let index = 0;
@@ -82,11 +83,11 @@ class AudioManager {
 
             const step = melody[index];
             step.notes.forEach((freq, i) => {
-                this.playPolyphonicNote(freq, step.dur / 1000, i === 0 ? 0.22 : 0.1);
+                this.playPolyphonicNote(freq, step.dur / 1000, i === 0 ? 0.38 : 0.22);
             });
 
             index = (index + 1) % melody.length;
-            this.bgMusicTimer = setTimeout(playStep, step.dur + 50);
+            this.bgMusicTimer = setTimeout(playStep, step.dur + 10);
         };
 
         playStep();
@@ -99,7 +100,7 @@ class AudioManager {
         }
     }
 
-    playPolyphonicNote(freq, duration, volume = 0.15) {
+    playPolyphonicNote(freq, duration, volume = 0.16) {
         if (this.isMuted || !this.ctx) return;
 
         try {
@@ -110,34 +111,32 @@ class AudioManager {
             osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
 
             gain.gain.setValueAtTime(0, this.ctx.currentTime);
-            gain.gain.linearRampToValueAtTime(volume, this.ctx.currentTime + 0.03);
-            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration * 1.2);
+            gain.gain.linearRampToValueAtTime(volume, this.ctx.currentTime + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration * 0.95);
 
             osc.connect(gain);
             gain.connect(this.ctx.destination);
 
             osc.start();
-            osc.stop(this.ctx.currentTime + duration * 1.2);
+            osc.stop(this.ctx.currentTime + duration * 0.95);
         } catch (e) {
             console.error("Polyphonic note error", e);
         }
     }
 
     // ----------------------------------------------------------------------
-    // 2. REALISTIC SPARKLER / FIREWORK CRACKLE SOUND GENERATOR (PHÁO BÔNG CHÂN THỰC)
+    // 2. REALISTIC SPARKLER / FIREWORK CRACKLE SOUND GENERATOR
     // ----------------------------------------------------------------------
     playRealisticSparklerCrackle() {
         if (this.isMuted || !this.ctx) return;
 
         try {
-            // Generate crackling fizz & popping sparks using noise grain spikes
             const duration = 0.6;
             const bufferSize = this.ctx.sampleRate * duration;
             const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
             const data = buffer.getChannelData(0);
 
             for (let i = 0; i < bufferSize; i++) {
-                // Rapid crackle grain impulse spikes
                 if (Math.random() < 0.12) {
                     data[i] = (Math.random() * 2 - 1) * (0.8 + Math.random() * 0.2);
                 } else {
@@ -148,7 +147,6 @@ class AudioManager {
             const noiseSource = this.ctx.createBufferSource();
             noiseSource.buffer = buffer;
 
-            // Bandpass filter for crisp sparkler fizzling frequency (3000Hz - 6000Hz)
             const filter = this.ctx.createBiquadFilter();
             filter.type = 'bandpass';
             filter.frequency.setValueAtTime(4500, this.ctx.currentTime);
@@ -208,16 +206,16 @@ class AudioManager {
         const arpeggio = [523.25, 659.25, 783.99, 1046.50, 1318.51];
         arpeggio.forEach((freq, idx) => {
             setTimeout(() => {
-                this.playPolyphonicNote(freq, 0.45, 0.18);
-            }, idx * 65);
+                this.playPolyphonicNote(freq, 0.35, 0.18);
+            }, idx * 45);
         });
     }
 
     // Card Unfold / Page Flip
     playCardUnfold() {
         if (this.isMuted || !this.ctx) return;
-        this.playPolyphonicNote(450, 0.15, 0.12);
-        setTimeout(() => this.playPolyphonicNote(900, 0.3, 0.15), 90);
+        this.playPolyphonicNote(450, 0.12, 0.12);
+        setTimeout(() => this.playPolyphonicNote(900, 0.22, 0.15), 70);
     }
 }
 

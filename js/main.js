@@ -32,9 +32,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     let autoPlayTimer = null;
     let activeVideoHandler = null;
 
-    // REAL BIRTHDAY TARGET TIME CONFIGURATION: 00h ngày 23/08/2026
-    const targetBirthdayDate = "2026-08-23T00:00:00"; 
-    console.log("🎯 Real Birthday Moment Locked:", targetBirthdayDate);
+    // TEST MODE RUN: Dynamic 15 seconds countdown from current moment
+    const testNow = new Date(Date.now() + 15000);
+    const testYear = testNow.getFullYear();
+    const testMonth = String(testNow.getMonth() + 1).padStart(2, '0');
+    const testDay = String(testNow.getDate()).padStart(2, '0');
+    const testHours = String(testNow.getHours()).padStart(2, '0');
+    const testMinutes = String(testNow.getMinutes()).padStart(2, '0');
+    const testSeconds = String(testNow.getSeconds()).padStart(2, '0');
+    const targetBirthdayDate = `${testYear}-${testMonth}-${testDay}T${testHours}:${testMinutes}:${testSeconds}`; 
+    console.log("🧪 Test Mode Activated: 15-second Countdown Target:", targetBirthdayDate);
 
     // ----------------------------------------------------------------------
     // CUTE CORNER MENU TAP TOGGLE & 8-SECOND AUTO-HIDE HANDLER
@@ -276,10 +283,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         carouselNext.addEventListener('click', () => updateCarousel(currentSlide + 1, true));
     }
     
+    // Dynamic Dot Indicators Auto-Generation Engine
     if (dotsContainer) {
-        const dots = dotsContainer.querySelectorAll('.dot');
-        dots.forEach((dot, idx) => {
+        dotsContainer.innerHTML = '';
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('span');
+            dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+            dot.dataset.index = idx;
             dot.addEventListener('click', () => updateCarousel(idx, true));
+            dotsContainer.appendChild(dot);
         });
     }
 

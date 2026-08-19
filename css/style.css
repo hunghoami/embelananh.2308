@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ROMANTIC LUXURY RESTAURANT & SALUTATION ANIMATION STYLESHEET (v2700.0)
+   ROMANTIC LUXURY RESTAURANT & EXPANDED FITTED MEDIA ALBUM STYLESHEET (v3300.0)
    ========================================================================== */
 
 :root {
@@ -71,56 +71,68 @@ html, body {
 }
 
 .entry-modal-card {
-    max-width: 440px;
-    width: 92%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 215, 0, 0.05));
-    border: 2px solid var(--champagne-gold);
-    padding: clamp(1.8rem, 4vh, 2.5rem) clamp(1.2rem, 3vw, 2.2rem);
-    border-radius: 32px;
+    max-width: 550px;
+    width: 94%;
+    background: rgba(18, 12, 30, 0.95);
+    border: 2px solid #ffd700;
+    padding: clamp(1.8rem, 4vh, 2.5rem) clamp(1.5rem, 3vw, 2.5rem);
+    border-radius: 28px;
     text-align: center;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.85), 0 0 40px var(--champagne-glow);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 0 35px rgba(255, 215, 0, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     animation: fadeIn 0.8s ease;
 }
 
 .sparkle-badge {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 117, 140, 0.25));
-    border: 1px solid var(--champagne-gold);
-    color: var(--champagne-gold);
-    font-size: clamp(0.68rem, 1.1vw, 0.8rem);
-    font-weight: 700;
-    letter-spacing: 2px;
-    padding: 4px 16px;
-    border-radius: 20px;
+    background: rgba(255, 215, 0, 0.15);
+    border: 1.5px solid #ffd700;
+    color: #ffe600;
+    font-family: var(--font-main);
+    font-size: clamp(0.72rem, 1.15vw, 0.88rem);
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 6px 18px;
+    border-radius: 24px;
     display: inline-block;
-    margin-bottom: 0.8rem;
+    white-space: nowrap;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .entry-modal-card h2 {
     font-family: var(--font-heading);
-    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-    background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.8rem;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.9rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 18px rgba(255, 215, 0, 0.6);
 }
 
 .entry-modal-card p {
-    font-size: clamp(0.85rem, 2.2vw, 1rem);
-    color: var(--text-soft);
-    line-height: 1.55;
-    margin-bottom: 1.5rem;
+    font-family: var(--font-main);
+    font-size: clamp(0.92rem, 2vw, 1.08rem);
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 1.6rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
 }
 
 .btn-start-experience {
-    background: linear-gradient(135deg, var(--champagne-gold) 0%, #ff8c00 100%);
-    color: #000;
+    background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+    color: #000000;
+    font-family: var(--font-main);
     font-weight: 800;
-    font-size: clamp(0.78rem, 1.4vw, 0.92rem);
-    padding: 14px 24px;
+    font-size: clamp(0.85rem, 1.5vw, 1.02rem);
+    letter-spacing: 1px;
+    padding: 15px 26px;
     border: none;
     border-radius: 35px;
     cursor: pointer;
-    box-shadow: 0 12px 35px var(--champagne-glow);
+    box-shadow: 0 12px 35px rgba(255, 140, 0, 0.6);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     width: 100%;
 }
@@ -213,7 +225,7 @@ html, body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: var(--bg-gradient);
+    background: #06030a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -223,12 +235,12 @@ html, body {
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: clamp(12px, 3.5vh, 30px) clamp(15px, 4vw, 50px);
+    padding: clamp(10px, 2.5vh, 24px) clamp(20px, 4vw, 50px);
+    box-sizing: border-box;
 }
 
 #bg-canvas {
@@ -248,23 +260,15 @@ html, body {
     z-index: 2;
 }
 
-.cinematic-bars .bar {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 3.5vh;
-    background: #000;
-    z-index: 900;
-    pointer-events: none;
+.cinematic-bars {
+    display: none !important;
 }
-.cinematic-bars .top-bar { top: 0; }
-.cinematic-bars .bottom-bar { bottom: 0; }
 
 /* CUTE FLOATING CORNER COLLAPSIBLE MENU */
 .cute-corner-wrapper {
     position: absolute;
-    top: 4.5vh;
-    right: 4vw;
+    top: 10px;
+    right: 12px;
     z-index: 2000;
     display: flex;
     align-items: center;
@@ -431,6 +435,20 @@ html, body {
     z-index: 30;
 }
 
+.birthday-date-badge {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.22), rgba(255, 117, 140, 0.22));
+    border: 1.5px solid var(--champagne-gold);
+    color: var(--champagne-gold);
+    font-size: clamp(0.78rem, 1.25vw, 0.98rem);
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 6px 22px;
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    animation: pulseGlow 2s infinite ease-in-out alternate;
+    margin-bottom: 2px;
+}
+
 .main-heading {
     font-family: var(--font-heading);
     font-size: clamp(1.6rem, 3.6vw, 2.8rem);
@@ -521,7 +539,9 @@ html, body {
 .party-scene-container {
     z-index: 20;
     background: var(--restaurant-gradient);
-    border-radius: 20px;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
     box-shadow: inset 0 0 100px rgba(0,0,0,0.95);
 }
 
@@ -549,15 +569,16 @@ html, body {
 
 .spotlight {
     position: absolute;
-    top: -25vh;
-    width: 26vw;
-    height: 90vh;
-    background: linear-gradient(180deg, rgba(255, 215, 0, 0.22) 0%, transparent 100%);
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at top, rgba(255, 215, 0, 0.16) 0%, rgba(255, 117, 140, 0.08) 50%, transparent 80%);
     pointer-events: none;
 }
-.spotlight-left { left: 8%; transform: rotate(18deg); }
-.spotlight-right { right: 8%; transform: rotate(-18deg); }
+.spotlight-left,
+.spotlight-right {
+    display: none !important;
+}
 
 .wishes-neon-text {
     font-family: var(--font-heading);
@@ -585,42 +606,20 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    width: min(92vw, 820px);
+    width: min(85vw, 820px);
     margin-bottom: 1vh;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
 .dining-male-character-box {
     position: relative;
-    width: clamp(90px, 18vh, 175px);
+    width: clamp(80px, 14vh, 140px);
     z-index: 12;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
-}
-
-.male-wish-speech {
-    background: rgba(255, 255, 255, 0.95);
-    color: #1a162b;
-    padding: 6px 12px;
-    border-radius: 16px;
-    font-size: clamp(0.62rem, 0.9vw, 0.78rem);
-    font-weight: 700;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    margin-bottom: 8px;
-    text-align: center;
-    white-space: nowrap;
-    animation: floatSpeech 3s infinite ease-in-out alternate;
-}
-
-.male-wish-speech::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 45%;
-    border-width: 8px 8px 0;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.95) transparent;
+    margin-bottom: 5px;
 }
 
 .dining-male-img {
@@ -683,51 +682,77 @@ html, body {
 }
 
 .candle-blow-badge {
-    margin-top: 8px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px stroke var(--champagne-gold);
+    margin-top: 6px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid var(--champagne-gold);
     color: var(--champagne-gold);
-    font-size: clamp(0.68rem, 1.1vw, 0.85rem);
+    font-size: clamp(0.62rem, 0.9vw, 0.78rem);
     font-weight: 700;
-    padding: 5px 16px;
+    padding: 4px 14px;
     border-radius: 20px;
     backdrop-filter: blur(12px);
     box-shadow: 0 0 18px var(--champagne-glow);
     animation: bounce 1.5s infinite;
+    white-space: nowrap;
+    max-width: 90vw;
 }
 
 .dining-female-character-box {
     position: relative;
-    width: clamp(90px, 18vh, 175px);
+    width: clamp(75px, 13vh, 130px);
     z-index: 12;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 15px;
+    align-items: flex-end;
+    margin-bottom: 5px;
+}
+
+.male-wish-speech,
+.female-wish-speech {
+    background: rgba(255, 255, 255, 0.96);
+    color: #1a162b;
+    padding: 5px 9px;
+    border-radius: 14px;
+    font-size: clamp(0.56rem, 0.8vw, 0.72rem);
+    font-weight: 700;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    margin-bottom: 6px;
+    text-align: center;
+    white-space: normal !important;
+    word-break: break-word !important;
+    width: max-content;
+    max-width: clamp(100px, 13vw, 140px);
+    line-height: 1.3;
+    animation: floatSpeech 3s infinite ease-in-out alternate;
+    box-sizing: border-box;
+}
+
+.male-wish-speech {
+    transform: translateX(10px);
 }
 
 .female-wish-speech {
-    background: rgba(255, 255, 255, 0.95);
-    color: #1a162b;
-    padding: 6px 12px;
-    border-radius: 16px;
-    font-size: clamp(0.62rem, 0.9vw, 0.78rem);
-    font-weight: 700;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    margin-bottom: 8px;
-    text-align: center;
-    white-space: nowrap;
-    animation: floatSpeech 3s infinite ease-in-out alternate;
+    transform: translateX(-10px);
+}
+
+.male-wish-speech::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 25%;
+    border-width: 7px 7px 0;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.96) transparent;
 }
 
 .female-wish-speech::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 45%;
-    border-width: 8px 8px 0;
+    bottom: -7px;
+    right: 25%;
+    border-width: 7px 7px 0;
     border-style: solid;
-    border-color: rgba(255, 255, 255, 0.95) transparent;
+    border-color: rgba(255, 255, 255, 0.96) transparent;
 }
 
 .dining-female-img {
@@ -753,44 +778,64 @@ html, body {
 
 .polaroid-card {
     position: absolute;
-    background: #ffffff;
-    padding: 6px 6px 10px 6px;
-    border-radius: 10px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    background: #ffffff !important;
+    border: 2.5px solid #ffffff;
+    padding: 5px 5px 7px 5px;
+    border-radius: 12px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 25px rgba(255, 215, 0, 0.35);
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: clamp(90px, 12vw, 130px);
+    width: clamp(90px, 11.5vw, 130px);
+    height: auto;
+    box-sizing: border-box;
+    overflow: hidden;
     animation: floatPolaroid 6s ease-in-out infinite alternate;
+    z-index: 5;
 }
 
-.polaroid-1 { top: 18%; left: 4%; transform: rotate(-8deg); animation-delay: 0s; }
-.polaroid-2 { top: 20%; right: 4%; transform: rotate(8deg); animation-delay: 1.8s; }
+.polaroid-1 { top: 12px; left: 16px; transform: rotate(-6deg); animation-delay: 0s; }
+.polaroid-2 { top: 12px; right: 65px; transform: rotate(6deg); animation-delay: 1.8s; }
 
 @keyframes floatPolaroid {
-    0% { transform: translateY(0) rotate(-6deg); }
-    100% { transform: translateY(-12px) rotate(6deg); }
+    0% { transform: translateY(0) rotate(-5deg); }
+    100% { transform: translateY(-10px) rotate(5deg); }
 }
 
 .polaroid-img-box {
     width: 100%;
-    height: clamp(60px, 8vw, 85px);
-    border-radius: 6px;
+    height: auto;
+    border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0d081a;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
 }
 .polaroid-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    max-height: clamp(85px, 14vh, 125px);
+    object-fit: contain;
+    border-radius: 8px;
+    filter: contrast(1.04) brightness(1.02);
 }
 
 .polaroid-caption {
     font-family: var(--font-handwriting);
-    color: #2b2338;
-    font-size: clamp(0.7rem, 0.9vw, 0.85rem);
-    font-weight: 700;
+    color: #1a1423 !important;
+    font-size: clamp(0.68rem, 0.9vw, 0.82rem);
+    font-weight: 800;
     margin-top: 4px;
-    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.25;
+    padding: 0 3px;
+    box-sizing: border-box;
+    text-shadow: none !important;
 }
 
 /* PHASE 4 & 5: HARMONIOUS GARDEN STAGE */
@@ -955,7 +1000,7 @@ html, body {
 }
 
 /* --------------------------------------------------------------------------
-   ROMANTIC TIGHT COUPLE EMBRACE MODAL (SALUTATION ENTRANCE ANIMATION)
+   EXPANDED & PERFECTLY FITTED MULTI-MEDIA POLAROID ALBUM CAROUSEL
    -------------------------------------------------------------------------- */
 .card-modal-overlay {
     position: fixed;
@@ -1036,8 +1081,8 @@ html, body {
 
 .card-container {
     position: relative;
-    width: min(84vw, 520px);
-    max-height: 88vh;
+    width: min(90vw, 560px);
+    max-height: 92vh;
     display: flex;
     flex-direction: column;
     z-index: 10;
@@ -1050,21 +1095,21 @@ html, body {
     background: #fffdfa !important;
     background-image: radial-gradient(#f7e1e6 1.2px, transparent 0) !important;
     background-size: 20px 20px !important;
-    border-radius: 22px;
-    padding: clamp(0.7rem, 2vh, 1.4rem) clamp(0.8rem, 2vw, 1.6rem);
+    border-radius: 24px;
+    padding: clamp(0.8rem, 2.2vh, 1.6rem) clamp(0.9rem, 2.2vw, 1.8rem);
     color: #2b2338 !important;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 35px var(--rose-glow);
     border: 5px solid #fff;
     transform-style: preserve-3d;
-    max-height: 86vh;
+    max-height: 90vh;
     overflow-y: auto;
 }
 
-/* RESPONSIVE MEDIA QUERIES FOR COMPACT & SMALL LANDSCAPE SCREENS */
+/* RESPONSIVE MEDIA QUERIES FOR COMPACT SCREENS */
 @media (max-width: 900px), (max-height: 600px) {
     .card-container {
-        width: min(78vw, 440px);
-        max-height: 86vh;
+        width: min(82vw, 480px);
+        max-height: 88vh;
     }
     .bottom-couple-img {
         width: clamp(48px, 8.5vw, 95px);
@@ -1076,8 +1121,8 @@ html, body {
 
 @media (max-width: 700px), (max-height: 500px) {
     .card-container {
-        width: min(72vw, 390px);
-        max-height: 84vh;
+        width: min(76vw, 420px);
+        max-height: 86vh;
     }
     .modal-couple-bottom-right {
         bottom: 5px;
@@ -1108,8 +1153,8 @@ html, body {
     position: absolute;
     top: -10px;
     right: -10px;
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: var(--rose-pink);
     color: #fff !important;
@@ -1186,6 +1231,7 @@ html, body {
     color: #d62839 !important;
 }
 
+/* EXPANDED & FITTED MULTI-MEDIA POLAROID CAROUSEL */
 .album-carousel-section {
     margin-top: 0.8rem;
     border-top: 1.5px stroke #f5e4e7;
@@ -1197,7 +1243,7 @@ html, body {
     font-family: var(--font-heading);
     color: #9e2a4b !important;
     font-size: clamp(0.95rem, 1.6vw, 1.2rem);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
 }
 
 .carousel-wrapper {
@@ -1205,13 +1251,13 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .carousel-track-container {
-    width: min(100%, 340px);
+    width: min(100%, 440px);
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 16px;
 }
 
 .carousel-track {
@@ -1227,77 +1273,90 @@ html, body {
 
 .polaroid-slide-card {
     background: #ffffff !important;
-    padding: 6px 6px 10px 6px;
-    border-radius: 12px;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.18);
-    width: min(100%, 250px);
+    padding: 8px 8px 12px 8px;
+    border-radius: 16px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    width: min(100%, 410px);
 }
 
 .media-container {
     position: relative;
     width: 100%;
-    height: clamp(90px, 15vh, 140px);
-    border-radius: 8px;
+    height: clamp(160px, 28vh, 280px);
+    border-radius: 14px;
     overflow: hidden;
-    background: #110c1c;
+    background: #140b21;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blur-backdrop {
+    position: absolute;
+    inset: -15px;
+    width: calc(100% + 30px);
+    height: calc(100% + 30px);
+    object-fit: cover !important;
+    filter: blur(25px) brightness(0.65) saturate(1.4);
+    transform: scale(1.15);
+    opacity: 0.88;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .fitted-media {
-    width: 100%;
-    height: 100%;
-    object-fit: cover !important;
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain !important;
     object-position: center !important;
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
 }
 
 .video-badge {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--champagne-gold) !important;
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 10px;
-    backdrop-filter: blur(4px);
+    display: none !important;
 }
 
 .slide-caption {
     font-family: var(--font-handwriting);
     color: #2b2338 !important;
-    font-size: 0.95rem;
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
     font-weight: 700;
-    margin-top: 5px;
+    margin-top: 6px;
 }
 
 .carousel-btn {
     background: var(--rose-pink);
     color: #fff !important;
     border: none;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
     transition: transform 0.2s ease;
+    flex-shrink: 0;
 }
 
 .carousel-btn:hover {
-    transform: scale(1.12);
+    transform: scale(1.14);
 }
 
 .carousel-dots {
     display: flex;
     justify-content: center;
-    gap: 6px;
-    margin-top: 6px;
+    gap: 7px;
+    margin-top: 8px;
 }
 
 .carousel-dots .dot {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #e2d9cc;
     cursor: pointer;
@@ -1306,7 +1365,7 @@ html, body {
 
 .carousel-dots .dot.active {
     background: var(--rose-pink);
-    transform: scale(1.3);
+    transform: scale(1.35);
 }
 
 .card-footer {

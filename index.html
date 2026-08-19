@@ -20,17 +20,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     
-    <!-- Custom Styles (with Hard Cache-Buster v=2900.0) -->
-    <link rel="stylesheet" href="css/style.css?v=2900.0">
+    <!-- Custom Styles (with Hard Cache-Buster v=7000.0) -->
+    <link rel="stylesheet" href="css/style.css?v=7000.0">
 </head>
 <body>
 
     <!-- IMMERSIVE FIRST-ACCESS ENTRY OVERLAY -->
     <div id="immersive-entry-overlay" class="immersive-entry-overlay active">
         <div class="entry-modal-card">
-            <div class="sparkle-badge">🎬 THƯỚC PHIM SINH NHẬT ĐIỆN ẢNH</div>
-            <h2>DÀNH TẶNG NGUYÊN BẢN CHO EM</h2>
-            <p>Nhấn vào nút bên dưới để tự động kích hoạt chế độ **Toàn Màn Hình & Xoay Ngang** cùng âm nhạc ngọt ngào nhé!</p>
+            <div class="sparkle-badge">✨ CHÚC MỪNG SINH NHẬT CỦA XINH NHẤT! ✨</div>
+            <h2>DÀNH TẶNG CHO EM</h2>
+            <p>Nhấn vào nút bên dưới để trải nghiệm hình ảnh và âm thanh ngọt ngào nhé!</p>
             
             <button id="btn-start-immersive-experience" class="btn-start-experience">
                 <span class="star-icon">✨</span> BẮT ĐẦU TRẢI NGHIỆM <span class="star-icon">✨</span>
@@ -61,10 +61,6 @@
         <!-- BACKGROUND CANVASES (STARS, SHOOTING STARS & BOKEH LIGHTS) -->
         <canvas id="bg-canvas"></canvas>
         <div class="vignette-overlay"></div>
-        <div class="cinematic-bars">
-            <div class="bar top-bar"></div>
-            <div class="bar bottom-bar"></div>
-        </div>
 
         <!-- CUTE FLOATING CORNER MENU BAR -->
         <div id="cute-corner-wrapper" class="cute-corner-wrapper">
@@ -89,15 +85,18 @@
             
             <!-- FLOATING & FALLING TEXT PHRASES LAYER -->
             <div class="floating-words-layer">
-                <div class="word-bubble word-1">✨ Tuổi mới rạng rỡ ✨</div>
-                <div class="word-bubble word-2">💕 Bình yên & Hạnh phúc 💕</div>
-                <div class="word-bubble word-3">🌸 Nụ cười ngọt ngào 🌸</div>
-                <div class="word-bubble word-4">💖 Mãi yêu thương 💖</div>
-                <div class="word-bubble word-5">🌟 Khoảnh khắc kỳ diệu 🌟</div>
+                <div class="word-bubble word-1">✨ Bình An & May Mắn ✨</div>
+                <div class="word-bubble word-2">💕 Xinh Đẹp & Mạnh Khỏe 💕</div>
+                <div class="word-bubble word-3">🌸 Nụ Cười Rạng Rỡ 🌸</div>
+                <div class="word-bubble word-4">💖 Mãi Yêu Thương 💖</div>
+                <div class="word-bubble word-5">🌟 Hạnh Phúc Trọn Vẹn 🌟</div>
             </div>
 
             <div class="responsive-stage-box countdown-layout">
                 <div class="countdown-wrapper">
+                    <!-- PROMINENT BIRTHDAY DATE BADGE -->
+                    <div class="birthday-date-badge">🎂 SINH NHẬT ĐẶC BIỆT: 23.08.2026 🎂</div>
+
                     <h1 class="main-heading">ĐẾM NGƯỢC KỶ NIỆM</h1>
                     <p class="sub-heading">"Mỗi giây phút trôi qua đều dẫn ta đến khoảnh khắc ngọt ngào nhất..."</p>
 
@@ -137,13 +136,12 @@
                 
                 <!-- BANNER -->
                 <div class="banner-container">
-                    <img src="assets/images/balloons-banner.svg?v=2900.0" alt="Happy Birthday Banner" class="balloons-banner-img">
+                    <img src="assets/images/balloons-banner.svg?v=7000.0" alt="Happy Birthday Banner" class="balloons-banner-img">
                 </div>
 
                 <!-- STAGE CENTER: NEON WISHES & ROMANTIC RESTAURANT DINING TABLE SETUP -->
                 <div class="stage-center">
-                    <div class="spotlight spotlight-left"></div>
-                    <div class="spotlight spotlight-right"></div>
+                    <div class="spotlight"></div>
                     
                     <div class="wishes-neon-text">
                         <span class="glow-word">CHÚC MỪNG</span>
@@ -156,15 +154,15 @@
                         <!-- MALE CARTOON CHARACTER SEATED AT LEFT -->
                         <div class="dining-male-character-box">
                             <div class="male-wish-speech">
-                                "Chúc mừng sinh nhật em yêu! 💕"
+                                "Chúc em luôn xinh đẹp & bình an! 💕"
                             </div>
-                            <img src="assets/images/male-character.svg?v=2900.0" alt="Male Cartoon Character" class="dining-male-img">
+                            <img src="assets/images/male-character.svg?v=7000.0" alt="Male Cartoon Character" class="dining-male-img">
                         </div>
 
                         <!-- DINING TABLE CENTER CAKE AREA -->
                         <div class="table-center-cake-area">
                             <div id="interactive-cake-wrapper" class="cake-wrapper" title="Chạm vào nến để ước và thổi nến!">
-                                <img src="assets/images/birthday-cake.svg?v=2900.0" alt="Birthday Cake SVG" class="cake-img-vector">
+                                <img src="assets/images/birthday-cake.svg?v=7000.0" alt="Birthday Cake SVG" class="cake-img-vector">
                                 
                                 <!-- INTERACTIVE CANDLE FLAMES -->
                                 <div id="flames-group" class="flames-container">
@@ -185,27 +183,27 @@
                         <!-- FEMALE CARTOON CHARACTER SEATED AT RIGHT -->
                         <div class="dining-female-character-box">
                             <div id="female-wish-speech" class="female-wish-speech">
-                                "Ước nguyện tuổi mới rạng rỡ... ✨"
+                                "Ước nguyện tuổi mới may mắn & rạng rỡ... ✨"
                             </div>
-                            <img src="assets/images/female-character.svg?v=2900.0" alt="Female Cartoon Character" class="dining-female-img">
+                            <img src="assets/images/female-character.svg?v=7000.0" alt="Female Cartoon Character" class="dining-female-img">
                         </div>
 
                     </div>
                 </div>
 
-                <!-- FLOATING POLAROID MEMORY CARDS -->
+                <!-- FLOATING POLAROID MEMORY CARDS (100% AUDITED NON-OVERLAPPING PLACEMENT) -->
                 <div class="floating-memories">
                     <div class="polaroid-card polaroid-1">
                         <div class="polaroid-img-box">
-                            <img src="assets/images/photo1.svg?v=2900.0" alt="Memory Photo 1" class="polaroid-img">
+                            <img src="assets/images/photo1.jpg?v=7000.0" alt="Memory Photo 1" class="polaroid-img">
                         </div>
-                        <p class="polaroid-caption">Nụ cười rạng rỡ ✨</p>
+                        <p class="polaroid-caption">Bình an & Rạng rỡ ✨</p>
                     </div>
                     <div class="polaroid-card polaroid-2">
                         <div class="polaroid-img-box">
-                            <img src="assets/images/photo2.svg?v=2900.0" alt="Memory Photo 2" class="polaroid-img">
+                            <img src="assets/images/photo2.jpg?v=7000.0" alt="Memory Photo 2" class="polaroid-img">
                         </div>
-                        <p class="polaroid-caption">Khoảnh khắc ngọt ngào 💕</p>
+                        <p class="polaroid-caption">Xinh đẹp & Ngọt ngào 💕</p>
                     </div>
                 </div>
             </div>
@@ -232,13 +230,13 @@
                         <div class="speech-bubble male-speech">
                             "Chúc mừng sinh nhật em! Anh có món quà đặc biệt chứa đựng tất cả yêu thương này... 🎁"
                         </div>
-                        <img src="assets/images/male-character.svg?v=2900.0" alt="Male Character SVG" class="character-img-vector male-img">
+                        <img src="assets/images/male-character.svg?v=7000.0" alt="Male Character SVG" class="character-img-vector male-img">
                     </div>
 
                     <!-- INTERACTIVE GIFT BOX IN CENTER COLUMN -->
                     <div class="gift-center-area">
                         <div id="interactive-gift-box" class="gift-box-interactive" title="Nhấn vào đây để mở thiệp & xem album!">
-                            <img src="assets/images/gift-box.svg?v=2900.0" alt="Gift Box SVG" class="gift-img-vector">
+                            <img src="assets/images/gift-box.svg?v=7000.0" alt="Gift Box SVG" class="gift-img-vector">
                             <div class="gift-glow-ring"></div>
                         </div>
                         <div class="click-hint-badge">✨ Nhấn mở quà & Album ảnh ✨</div>
@@ -249,7 +247,7 @@
                         <div class="speech-bubble female-speech">
                             "Oa bất ngờ quá! Cảm ơn anh rất nhiều! 💕"
                         </div>
-                        <img src="assets/images/female-character.svg?v=2900.0" alt="Female Character SVG" class="character-img-vector female-img">
+                        <img src="assets/images/female-character.svg?v=7000.0" alt="Female Character SVG" class="character-img-vector female-img">
                     </div>
                 </div>
             </div>
@@ -263,8 +261,8 @@
             <div class="modal-couple-bottom-right">
                 <div class="couple-floating-heart">💖</div>
                 <div class="couple-avatars-row">
-                    <img src="assets/images/male-character.svg?v=2900.0" alt="Male Avatar" class="bottom-couple-img male-couple-img">
-                    <img src="assets/images/female-character.svg?v=2900.0" alt="Female Avatar" class="bottom-couple-img female-couple-img">
+                    <img src="assets/images/male-character.svg?v=7000.0" alt="Male Avatar" class="bottom-couple-img male-couple-img">
+                    <img src="assets/images/female-character.svg?v=7000.0" alt="Female Avatar" class="bottom-couple-img female-couple-img">
                 </div>
             </div>
 
@@ -275,35 +273,35 @@
                     <!-- Envelope Wax Seal Header -->
                     <div class="wax-seal-header">
                         <div class="wax-seal-icon">💌</div>
-                        <div class="wax-seal-stamp">SEALED WITH EVERLASTING LOVE</div>
+                        <div class="wax-seal-stamp">SEALED WITH EVERLASTING LOVE • 23.08.2026</div>
                     </div>
 
                     <div class="card-header">
-                        <h2>THƯ CHÚC MỪNG SINH NHẬT</h2>
-                        <p class="handwriting-sub">Gửi đến người nhận tuyệt vời nhất thế gian...</p>
+                        <h2>HAPPY BIRTHDAY LAN ANH 🎂✨</h2>
+                        <p class="handwriting-sub">Gửi đến cô gái xinh đẹp & tuyệt vời nhất... 🌸💕</p>
                     </div>
 
                     <!-- Handwritten Letter Content -->
                     <div class="card-body handwriting-font">
-                        <p class="salutation">Thân gửi Em,</p>
+                        <p class="salutation">Gửi em bé nhỏ, 💖</p>
                         
                         <p class="letter-paragraph">
-                            Chúc mừng sinh nhật tuổi mới thật rạng rỡ và bình yên! Cảm ơn em vì đã xuất hiện, mang theo nụ cười ấm áp và làm cho mỗi ngày trôi qua đều trở nên có ý nghĩa.
+                            Chúc mừng sinh nhật tuổi mới thật rạng rỡ! 🎂 Chúc em luôn <strong>Bình An, May Mắn, Xinh Đẹp & Mạnh Khỏe</strong>. Cảm ơn em vì đã xuất hiện, mang theo nụ cười ấm áp và làm cho mỗi ngày trôi qua đều trở nên ngập tràn hạnh phúc. ✨🌸
                         </p>
                         
                         <p class="letter-paragraph">
-                            Mong rằng ở tuổi mới, em sẽ luôn giữ trọn niềm tin, luôn tràn ngập tiếng cười và vững bước chinh phục mọi ước mơ. Dù ở bất cứ đâu, em hãy nhớ rằng luôn có người trân trọng và yêu thương em thật nhiều!
+                            Mong rằng ở tuổi mới, em sẽ luôn giữ trọn nụ cười rạng rỡ, luôn tràn ngập niềm vui và vững bước chinh phục mọi giấc mơ. Dù ở bất cứ đâu, hãy luôn nhớ rằng có người luôn bên cạnh, trân trọng và yêu thương em thật nhiều! 💕🌟💖
                         </p>
 
                         <div class="signature-section">
-                            <p class="closing">Yêu thương sâu sắc,</p>
-                            <p class="signature-name">Gửi từ trái tim ✨💖</p>
+                            <p class="closing">Yêu thương em thật nhiều,</p>
+                            <p class="signature-name">HUNGHOAMI ✨💖 (23.08.2026)</p>
                         </div>
                     </div>
 
-                    <!-- MULTI-MEDIA POLAROID ALBUM CAROUSEL (PHOTOS + VIDEOS FIT WITHOUT DISTORTION) -->
+                    <!-- MULTI-MEDIA POLAROID ALBUM CAROUSEL (10 MEDIA SLIDES: 8 PHOTOS + 2 VIDEOS) -->
                     <div class="album-carousel-section">
-                        <h3 class="album-title">📸 Album Kỷ Niệm (Nhiều Ảnh & Video)</h3>
+                        <h3 class="album-title">📸 Khoảnh khắc thiên thần đáng yêu</h3>
                         
                         <div class="carousel-wrapper">
                             <button id="carousel-prev" class="carousel-btn prev-btn" title="Trước">&#10094;</button>
@@ -315,7 +313,8 @@
                                     <div class="carousel-slide active">
                                         <div class="polaroid-slide-card">
                                             <div class="media-container">
-                                                <img src="assets/images/photo1.svg?v=2900.0" alt="Memory Photo 1" class="fitted-media">
+                                                <img src="assets/images/photo1.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <img src="assets/images/photo1.jpg?v=7000.0" alt="Memory Photo 1" class="fitted-media">
                                             </div>
                                             <div class="slide-caption">✨ Nụ cười rạng rỡ nhất của em</div>
                                         </div>
@@ -325,9 +324,10 @@
                                     <div class="carousel-slide">
                                         <div class="polaroid-slide-card">
                                             <div class="media-container">
-                                                <img src="assets/images/photo2.svg?v=2900.0" alt="Memory Photo 2" class="fitted-media">
+                                                <img src="assets/images/photo2.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <img src="assets/images/photo2.jpg?v=7000.0" alt="Memory Photo 2" class="fitted-media">
                                             </div>
-                                            <div class="slide-caption">💕 Bình yên trong từng khoảnh khắc</div>
+                                            <div class="slide-caption">💕 Bình yên & xinh đẹp trong từng khoảnh khắc</div>
                                         </div>
                                     </div>
                                     
@@ -335,11 +335,11 @@
                                     <div class="carousel-slide">
                                         <div class="polaroid-slide-card">
                                             <div class="media-container video-media">
-                                                <video class="fitted-media memory-video" muted playsinline poster="assets/images/photo3.svg">
-                                                    <source src="assets/videos/memory-clip1.mp4" type="video/mp4">
-                                                    <img src="assets/images/photo3.svg" alt="Memory Video Fallback" class="fitted-media">
+                                                <img src="assets/images/photo3.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <video class="fitted-media memory-video" muted playsinline poster="assets/images/photo3.jpg">
+                                                    <source src="assets/videos/video1.mp4" type="video/mp4">
+                                                    <img src="assets/images/photo3.jpg" alt="Memory Video Fallback" class="fitted-media">
                                                 </video>
-                                                <span class="video-badge">🎥 Video Kỷ Niệm</span>
                                             </div>
                                             <div class="slide-caption">🎬 Thước phim kỷ niệm đáng nhớ</div>
                                         </div>
@@ -349,23 +349,79 @@
                                     <div class="carousel-slide">
                                         <div class="polaroid-slide-card">
                                             <div class="media-container">
-                                                <img src="assets/images/photo3.svg?v=2900.0" alt="Memory Photo 3" class="fitted-media">
+                                                <img src="assets/images/photo3.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <img src="assets/images/photo3.jpg?v=7000.0" alt="Memory Photo 3" class="fitted-media">
                                             </div>
-                                            <div class="slide-caption">🌸 Tuổi mới rạng rỡ & hạnh phúc</div>
+                                            <div class="slide-caption">🌸 Tuổi mới mạnh khỏe, may mắn & hạnh phúc</div>
                                         </div>
                                     </div>
 
-                                    <!-- Slide 5: Video 2 -->
+                                    <!-- Slide 5: Photo 4 -->
+                                    <div class="carousel-slide">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container">
+                                                <img src="assets/images/photo4.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <img src="assets/images/photo4.jpg?v=7000.0" alt="Memory Photo 4" class="fitted-media">
+                                            </div>
+                                            <div class="slide-caption">💖 Khoảnh khắc ngọt ngào bên nhau</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 6: Video 2 -->
                                     <div class="carousel-slide">
                                         <div class="polaroid-slide-card">
                                             <div class="media-container video-media">
-                                                <video class="fitted-media memory-video" muted playsinline poster="assets/images/photo1.svg">
-                                                    <source src="assets/videos/memory-clip1.mp4" type="video/mp4">
-                                                    <img src="assets/images/photo1.svg" alt="Memory Video Fallback 2" class="fitted-media">
+                                                <img src="assets/images/photo1.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <video class="fitted-media memory-video" muted playsinline poster="assets/images/photo1.jpg">
+                                                    <source src="assets/videos/video2.mp4" type="video/mp4">
+                                                    <img src="assets/images/photo1.jpg" alt="Memory Video Fallback 2" class="fitted-media">
                                                 </video>
-                                                <span class="video-badge">🎥 Video Kỷ Niệm</span>
                                             </div>
                                             <div class="slide-caption">🌟 Nụ cười ấm áp tuổi mới</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 7: Photo 5 -->
+                                    <div class="carousel-slide">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container">
+                                                <img src="assets/images/photo5.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <img src="assets/images/photo5.jpg?v=7000.0" alt="Memory Photo 5" class="fitted-media">
+                                            </div>
+                                            <div class="slide-caption">✨ Kỷ niệm đong đầy yêu thương</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 8: Photo 6 -->
+                                    <div class="carousel-slide">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container">
+                                                <img src="assets/images/photo6.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <img src="assets/images/photo6.jpg?v=7000.0" alt="Memory Photo 6" class="fitted-media">
+                                            </div>
+                                            <div class="slide-caption">🌟 Mãi mãi bên em</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 9: Photo 7 -->
+                                    <div class="carousel-slide">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container">
+                                                <img src="assets/images/photo7.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <img src="assets/images/photo7.jpg?v=7000.0" alt="Memory Photo 7" class="fitted-media">
+                                            </div>
+                                            <div class="slide-caption">🌸 Yêu thương đong đầy mỗi ngày</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 10: Photo 8 -->
+                                    <div class="carousel-slide">
+                                        <div class="polaroid-slide-card">
+                                            <div class="media-container">
+                                                <img src="assets/images/photo8.jpg?v=7000.0" alt="" class="blur-backdrop">
+                                                <img src="assets/images/photo8.jpg?v=7000.0" alt="Memory Photo 8" class="fitted-media">
+                                            </div>
+                                            <div class="slide-caption">💕 Trân trọng từng giây phút bên nhau</div>
                                         </div>
                                     </div>
 
@@ -375,14 +431,8 @@
                             <button id="carousel-next" class="carousel-btn next-btn" title="Tiếp">&#10095;</button>
                         </div>
 
-                        <!-- Dynamic Carousel Indicators -->
-                        <div class="carousel-dots" id="carousel-dots">
-                            <span class="dot active" data-index="0"></span>
-                            <span class="dot" data-index="1"></span>
-                            <span class="dot" data-index="2"></span>
-                            <span class="dot" data-index="3"></span>
-                            <span class="dot" data-index="4"></span>
-                        </div>
+                        <!-- Dynamic Auto-Generated Carousel Indicators -->
+                        <div class="carousel-dots" id="carousel-dots"></div>
                     </div>
 
                     <div class="card-footer">
@@ -394,10 +444,10 @@
 
     </div>
 
-    <!-- CUSTOM JAVASCRIPT MODULES (with Hard Cache-Buster v=2900.0) -->
-    <script src="js/audio.js?v=2900.0"></script>
-    <script src="js/timeSync.js?v=2900.0"></script>
-    <script src="js/cinematic.js?v=2900.0"></script>
-    <script src="js/main.js?v=2900.0"></script>
+    <!-- CUSTOM JAVASCRIPT MODULES (with Hard Cache-Buster v=7000.0) -->
+    <script src="js/audio.js?v=7000.0"></script>
+    <script src="js/timeSync.js?v=7000.0"></script>
+    <script src="js/cinematic.js?v=7000.0"></script>
+    <script src="js/main.js?v=7000.0"></script>
 </body>
 </html>
