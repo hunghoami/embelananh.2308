@@ -89,16 +89,18 @@ html, body {
     border: 1.5px solid #ffd700;
     color: #ffe600;
     font-family: var(--font-main);
-    font-size: clamp(0.72rem, 1.15vw, 0.88rem);
+    font-size: clamp(0.62rem, 0.95vw, 0.82rem);
     font-weight: 800;
-    letter-spacing: 1px;
-    padding: 6px 18px;
+    letter-spacing: 0.5px;
+    padding: 6px 14px;
     border-radius: 24px;
     display: inline-block;
-    white-space: nowrap;
-    max-width: 100%;
+    white-space: normal !important;
+    word-break: break-word !important;
+    max-width: 92%;
     margin-bottom: 1rem;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    box-sizing: border-box;
 }
 
 .entry-modal-card h2 {
