@@ -80,24 +80,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // ----------------------------------------------------------------------
-    // FULLSCREEN & LANDSCAPE LOCK HANDLER
+    // FULLSCREEN & LANDSCAPE LOCK HANDLER (SAFE VIEWPORT WITHOUT BROWSER TOAST)
     // ----------------------------------------------------------------------
     const requestFullscreenAndLandscapeLock = () => {
-        const docEl = document.documentElement;
-
-        const fsPromise = docEl.requestFullscreen ? docEl.requestFullscreen() :
-                          (docEl.webkitRequestFullscreen ? docEl.webkitRequestFullscreen() : Promise.resolve());
-
-        if (fsPromise && fsPromise.then) {
-            fsPromise.then(() => {
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('landscape').catch(() => {});
-                }
-            }).catch(() => {});
-        } else {
-            if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('landscape').catch(() => {});
-            }
+        if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock('landscape').catch(() => {});
         }
 
         const entryOverlay = document.getElementById('immersive-entry-overlay');
@@ -112,14 +99,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (btnExitApp) {
         btnExitApp.addEventListener('click', (e) => {
             e.stopPropagation();
-            console.log("🚪 Exit Button Tapped. Exiting Fullscreen...");
-            if (document.exitFullscreen) {
-                document.exitFullscreen().catch(() => {});
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
+            console.log("🚪 Exit Button Tapped.");
 
             if (window.audioMgr) {
                 window.audioMgr.stopBackgroundMusic();
@@ -147,7 +127,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Audio Interaction Unlock
     const unlockAudio = () => {
-        requestFullscreenAndLandscapeLock();
         if (window.audioMgr) {
             window.audioMgr.init();
             window.audioMgr.startBackgroundMusic();
