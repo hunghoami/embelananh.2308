@@ -1071,19 +1071,24 @@ html, body {
 }
 
 .bottom-couple-img {
-    width: clamp(60px, 10vw, 125px);
+    width: clamp(90px, 15vw, 175px);
     height: auto;
-    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.75));
+    aspect-ratio: 4 / 4.8;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 2.5px solid rgba(255, 215, 0, 0.8);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75), 0 0 22px var(--rose-glow);
+    filter: contrast(1.04) brightness(1.02);
     transition: transform 0.3s ease;
 }
 
 .male-couple-img {
-    transform: rotate(7deg) translateX(12px);
+    transform: rotate(6deg) translateX(10px);
     z-index: 2;
 }
 
 .female-couple-img {
-    transform: rotate(-7deg) translateX(-12px);
+    transform: rotate(-6deg) translateX(-10px);
     z-index: 3;
 }
 
@@ -1120,7 +1125,7 @@ html, body {
         max-height: 88vh;
     }
     .bottom-couple-img {
-        width: clamp(48px, 8.5vw, 95px);
+        width: clamp(75px, 12vw, 140px);
     }
     .couple-floating-heart {
         font-size: clamp(1.2rem, 2.2vw, 2rem);
@@ -1137,7 +1142,7 @@ html, body {
         right: 8px;
     }
     .bottom-couple-img {
-        width: clamp(40px, 7vw, 75px);
+        width: clamp(65px, 10vw, 115px);
     }
 }
 
