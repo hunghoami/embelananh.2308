@@ -60,8 +60,9 @@ class TimeSyncManager {
         }
     }
 
-    // Set Target Birthday Moment cleanly
-    setTargetTime(targetDate) {
+    // Set Target Birthday Moment cleanly (with 30-second fallback if preset time has passed)
+    setTargetTime(targetDate, autoFallback30s = true) {
+        let rawTargetMs = 0;
         if (typeof targetDate === 'string') {
             // Parse YYYY-MM-DDTHH:mm:ss string cleanly in local time
             const cleanStr = targetDate.replace('+07:00', '').replace('Z', '');
@@ -79,14 +80,24 @@ class TimeSyncManager {
                     
                     // Create local date object
                     const localTarget = new Date(year, month, day, hour, minute, second);
-                    this.targetTimeMs = localTarget.getTime();
-                    console.log("🎯 Target Parsed Local:", localTarget.toString(), "Epoch Ms:", this.targetTimeMs);
-                    return;
+                    rawTargetMs = localTarget.getTime();
+                    console.log("🎯 Target Parsed Local:", localTarget.toString(), "Epoch Ms:", rawTargetMs);
                 }
             }
         }
 
-        this.targetTimeMs = new Date(targetDate).getTime();
+        if (!rawTargetMs) {
+            rawTargetMs = new Date(targetDate).getTime();
+        }
+
+        const now = this.getNowUnixMs();
+        if (autoFallback30s && rawTargetMs <= now) {
+            console.log("⏰ Preset Birthday Date Has Passed! Activating 30-Second Access Teaser Countdown...");
+            this.targetTimeMs = now + 30000; // 30 seconds countdown from current access moment
+        } else {
+            this.targetTimeMs = rawTargetMs;
+        }
+
         this.hasTriggeredComplete = false;
     }
 
